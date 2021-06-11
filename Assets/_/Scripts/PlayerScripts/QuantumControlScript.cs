@@ -7,7 +7,7 @@ public class QuantumControlScript : MonoBehaviour
 {
     static float COS_45 = 0.70710f;
 
-    public float JumpForce = 3f;
+    public float JumpForce = 10f;
     public float MoveVelocity = 5f;
 
     [ReadOnly] public Vector2 DesiredVelocity;
@@ -22,8 +22,6 @@ public class QuantumControlScript : MonoBehaviour
 
     enum EDirections : int
     {
-        Up,
-        Down,
         Right,
         Left,
         Count
@@ -37,7 +35,7 @@ public class QuantumControlScript : MonoBehaviour
         {
             validDirections[i] = true;
         }
-
+        
         foreach (GameObject player in cachedControllablePlayers)
         {
             Vector2 playerPosition = player.transform.position;
@@ -49,38 +47,29 @@ public class QuantumControlScript : MonoBehaviour
 
                 foreach (ContactPoint2D contact in contacts)
                 {
-                    Vector2 toContact = contact.point - playerPosition;
-                    toContact.Normalize();
+                    Debug.DrawLine(contact.point, playerPosition, Color.red, 0f);
+                    Vector2 revContactNormal = -contact.normal;
 
-                    if (Vector2.Dot(toContact, Vector2.right) >= COS_45)
+                    if (Vector2.Dot(revContactNormal, Vector2.right) >= COS_45)
                     {
                         validDirections[(int)EDirections.Right] = false;
                     }
-                    if (Vector2.Dot(toContact, Vector2.left) >= COS_45)
+                    if (Vector2.Dot(revContactNormal, Vector2.left) >= COS_45)
                     {
                         validDirections[(int)EDirections.Left] = false;
                     }
-                    if (Vector2.Dot(toContact, Vector2.up) >= COS_45)
+
+                    //Jumping
+                    if (Vector2.Dot(revContactNormal, Vector2.down) >= COS_45 && Input.GetKeyDown(KeyCode.UpArrow))
                     {
-                        validDirections[(int)EDirections.Up] = false;
-                    }
-                    if (Vector2.Dot(toContact, Vector2.down) >= COS_45)
-                    {
-                        validDirections[(int)EDirections.Down] = false;
+                        Rigidbody2D playerRigidBody = player.GetComponent<Rigidbody2D>();
+                        playerRigidBody.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
                     }
                 }
             }
         }
 
         DesiredVelocity = new Vector2(0f, 0f);
-        if (Input.GetKey(KeyCode.UpArrow) && validDirections[(int)EDirections.Up])
-        {
-            DesiredVelocity += Vector2.up * JumpForce;
-        }
-        if (Input.GetKey(KeyCode.DownArrow) && validDirections[(int)EDirections.Down])
-        {
-            DesiredVelocity += Vector2.down * JumpForce;
-        }
         if (Input.GetKey(KeyCode.RightArrow) && validDirections[(int)EDirections.Right])
         {
             DesiredVelocity += Vector2.right * MoveVelocity;
