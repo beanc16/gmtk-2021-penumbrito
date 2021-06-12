@@ -54,11 +54,15 @@ public class QuantumControlScript : MonoBehaviour
     {
         var effects = gameModel.ActivePlayerEffects;
 
+        string activePowersText = "Active Powers : ";
+
         if (effects.ContainsKey(PlayerEffect.Jump))
         {
             this.JumpForce = effects[PlayerEffect.Jump] > 0 ?
                 this.startingJumpForce * 3 :
                 this.startingJumpForce;
+
+            activePowersText += "| Jump |";
         }
 
         if (effects.ContainsKey(PlayerEffect.Speed))
@@ -66,7 +70,13 @@ public class QuantumControlScript : MonoBehaviour
             this.MoveVelocity = effects[PlayerEffect.Speed] > 0 ?
                 this.startingMoveVelocity * 1.5f :
                 this.startingMoveVelocity;
+
+            activePowersText += "| Speed |";
         }
+
+        GameObject activePowersObject = GameObject.FindGameObjectsWithTag("ActivePowersUI")[0];
+        UnityEngine.UI.Text text = activePowersObject.GetComponent<UnityEngine.UI.Text>();
+        text.text = activePowersText;
     }
 
     enum EDirections : int
@@ -86,6 +96,8 @@ public class QuantumControlScript : MonoBehaviour
             SceneHandler.LoadScene("GameOver");
             return;
         }
+
+        UpdatePlayerEffects();
 
         this.validDirections = new bool[(int)EDirections.Count];
         for (int i = 0; i < (int)EDirections.Count; ++i)
