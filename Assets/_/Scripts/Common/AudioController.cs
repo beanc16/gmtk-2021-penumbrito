@@ -41,6 +41,11 @@ public class AudioController : MonoBehaviour
         var allSfx = this.sfxParent.GetComponentsInChildren<AudioSource>();
         foreach(var sfx in allSfx)
         {
+            if (this.sfxSources.ContainsKey(sfx.name))
+            {
+                Debug.LogWarning($"Sound Effect with name {sfx.name} already added to effects list.");
+                continue;
+            }
             this.sfxSources.Add(sfx.name, sfx);
         }
 
@@ -69,6 +74,10 @@ public class AudioController : MonoBehaviour
     {
         if (instance != null && instance.musicSources.ContainsKey(music))
         {
+            if (instance.musicSources[music].isPlaying)
+            {
+                return;
+            }
             instance.musicSources[music].Play();
         }
     }

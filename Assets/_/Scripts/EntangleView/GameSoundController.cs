@@ -34,7 +34,7 @@ namespace Assets.__.Scripts.EntangleView
         {
             AudioController.PlayMusic(song);
             baseVolume.Add(song, AudioController.GetMusicVolume(song));
-            currentVolume.Add(song, 0);
+            currentVolume.Add(song, 0.1f);
             musicState.Add(song, false);
         }
 
