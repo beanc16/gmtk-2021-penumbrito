@@ -43,4 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65abb3685fc907941819dd0afa09efca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Force: 3
+  JumpForce: 3
+  MoveVelocity: 5
+  DesiredVelocity: {x: 0, y: 0}
