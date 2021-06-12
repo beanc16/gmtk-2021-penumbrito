@@ -95,6 +95,11 @@ public class QuantumControlScript : MonoBehaviour
 
         foreach (var player in cachedControllablePlayers)
         {
+            if (gameModel.ActivePanels[player.PlayerIndex] == false)
+            {
+                continue;
+            }
+
             Vector2 playerPosition = player.transform.position;
             Collider2D playerCollider = player.GetComponent<Collider2D>();
             if (playerCollider)
@@ -118,6 +123,10 @@ public class QuantumControlScript : MonoBehaviour
 
         foreach (var player in cachedControllablePlayers)
         {
+            if (gameModel.ActivePanels[player.PlayerIndex] == false)
+            {
+                continue;
+            }
             // ???
             if (Time.deltaTime < 0.1f)
             {
