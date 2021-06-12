@@ -52,7 +52,7 @@ public class QuantumControlScript : MonoBehaviour
 
     public void UpdatePlayerEffects()
     {
-        var effects = gameModel.ActivePlayerEffects;
+        /*var effects = gameModel.ActivePlayerEffects;
 
         string activePowersText = "Active Powers : ";
 
@@ -76,7 +76,9 @@ public class QuantumControlScript : MonoBehaviour
 
         GameObject activePowersObject = GameObject.FindGameObjectsWithTag("ActivePowersUI")[0];
         UnityEngine.UI.Text text = activePowersObject.GetComponent<UnityEngine.UI.Text>();
-        text.text = activePowersText;
+        text.text = activePowersText;*/
+
+
     }
 
     enum EDirections : int
