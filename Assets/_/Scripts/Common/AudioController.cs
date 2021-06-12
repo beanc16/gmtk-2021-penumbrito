@@ -22,6 +22,9 @@ public class AudioController : MonoBehaviour
     private float musicVolume;
     private float sfxVolume;
 
+    [Header("Settings")]
+    [SerializeField] private bool initializeAudioVolumesOnStart = true;
+
     private void Start()
     {
         if(instance != null)
@@ -45,6 +48,12 @@ public class AudioController : MonoBehaviour
         foreach (var music in allMusic)
         {
             this.musicSources.Add(music.name, music);
+        }
+
+        // Initialize volumes
+        if (initializeAudioVolumesOnStart && !AudioInitializer.IsInitialized)
+        {
+            AudioInitializer.TryInitializeAudioVolumes();
         }
     }
 
