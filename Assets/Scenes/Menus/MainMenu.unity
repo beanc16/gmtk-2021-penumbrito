@@ -610,6 +610,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 590704345, guid: 650267137853bd94d9d1e08b19f8a428, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 83b4c2a9de8056501877af8b5eec68d7, type: 3}
+    - target: {fileID: 277737187533865866, guid: 650267137853bd94d9d1e08b19f8a428, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 66a511dfa765d85c1afb92b0f9538ef7, type: 3}
+    - target: {fileID: 3731204881599138261, guid: 650267137853bd94d9d1e08b19f8a428, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6ef3b058acd6408a4b74f23c29845988, type: 3}
+    - target: {fileID: 9104435456250904463, guid: 650267137853bd94d9d1e08b19f8a428, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 962adb4590ffc5fd1b315f6656616044, type: 3}
     - target: {fileID: 9182491784537752682, guid: 650267137853bd94d9d1e08b19f8a428, type: 3}
       propertyPath: m_Name
       value: GlobalAudioController
