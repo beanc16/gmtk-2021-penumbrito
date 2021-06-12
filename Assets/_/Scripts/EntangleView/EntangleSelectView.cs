@@ -24,10 +24,10 @@ namespace Assets.__.Scripts.EntangleView
             var width = rect.width * 0.5f;
             var height = (rect.height - this.bottomSpacing) * 0.5f;
 
-            this.CreatePanel(width, height, true, true, 0);
-            this.CreatePanel(width, height, false, true, 1);
-            this.CreatePanel(width, height, true, false, 2);
-            this.CreatePanel(width, height, false, false, 3);
+            this.CreatePanel(width, height, false, true, 0);
+            this.CreatePanel(width, height, true, true, 1);
+            this.CreatePanel(width, height, false, false, 2);
+            this.CreatePanel(width, height, true, false, 3);
         }
 
         private void CreatePanel(float width, float height, bool left, bool top, int panelIndex)
