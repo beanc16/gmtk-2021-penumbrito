@@ -34,6 +34,8 @@ namespace Assets.__.Scripts.EntangleView
             //imagePanel.gameObject.SetActive(gameModel.ActivePanels[this.panelNumber]);
             this.SetLightStates(gameModel.ActivePanels[this.panelNumber]);
             //Inform systems that need it of who is active and who is not.
+
+            gameModel.UpdateActivePanels();
         }
 
         public void Setup(int panelNumber)

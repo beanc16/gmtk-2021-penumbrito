@@ -26,6 +26,8 @@ namespace Assets.__.Scripts
         public int CountInWinZone;
         public bool ReloadScene;
 
+        public event Action OnActivePanelChange;
+
         private QuantumControlScript registeredQuantumControlScript;
 
         private void Setup()
@@ -53,6 +55,11 @@ namespace Assets.__.Scripts
             }
 
             this.registeredQuantumControlScript.UpdatePlayerEffects();
+        }
+
+        public void UpdateActivePanels()
+        {
+            this.OnActivePanelChange.Invoke();
         }
 
         public void Reset()
