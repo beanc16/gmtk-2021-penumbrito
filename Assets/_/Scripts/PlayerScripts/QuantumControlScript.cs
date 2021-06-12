@@ -1,3 +1,5 @@
+using Assets.__.Scripts;
+using Assets.__.Scripts.PlayerScripts;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
@@ -12,12 +14,17 @@ public class QuantumControlScript : MonoBehaviour
 
     [ReadOnly] public Vector2 DesiredVelocity;
 
-    private GameObject[] cachedControllablePlayers;
+    private PlayerView[] cachedControllablePlayers;
 
     // Start is called before the first frame update
     void Start()
     {
-        cachedControllablePlayers = GameObject.FindGameObjectsWithTag("Player");
+        var gameObjects = GameObject.FindGameObjectsWithTag("Player");
+        cachedControllablePlayers = new PlayerView[gameObjects.Length];
+        for(int i = 0; i < gameObjects.Length; i++)
+        {
+            cachedControllablePlayers[i] = gameObjects[i].GetComponent<PlayerView>();
+        }
     }
 
     enum EDirections : int
@@ -35,9 +42,13 @@ public class QuantumControlScript : MonoBehaviour
         {
             validDirections[i] = true;
         }
-        
-        foreach (GameObject player in cachedControllablePlayers)
+
+        foreach (var player in cachedControllablePlayers)
         {
+            if (GameModel.GetInstance().ActivePanels[player.PlayerIndex] == false)
+            {
+                continue;
+            }
             Vector2 playerPosition = player.transform.position;
             Collider2D playerCollider = player.GetComponent<Collider2D>();
             if (playerCollider)
@@ -79,8 +90,12 @@ public class QuantumControlScript : MonoBehaviour
             DesiredVelocity += Vector2.left * MoveVelocity;
         }
 
-        foreach (GameObject player in cachedControllablePlayers)
+        foreach (var player in cachedControllablePlayers)
         {
+            if (GameModel.GetInstance().ActivePanels[player.PlayerIndex] == false)
+            {
+                continue;
+            }
             player.transform.position += (Vector3) DesiredVelocity * Time.deltaTime;
         }
     }
