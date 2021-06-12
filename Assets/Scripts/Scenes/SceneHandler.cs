@@ -20,7 +20,7 @@ public class BeforeExitGameEvent : UnityEvent { }
 
 public class SceneHandler : MonoBehaviour
 {
-    private static SceneHandler instance = new SceneHandler();
+    private static SceneHandler instance;
 
     // Load events (works for reloads / restarts too)
     public static BeforeSceneLoadedEvent OnBeforeSceneLoaded;
@@ -31,6 +31,16 @@ public class SceneHandler : MonoBehaviour
 
     // Exit events
     public static BeforeExitGameEvent OnBeforeExitGame;
+
+    private void Awake()
+    {
+        SceneHandler sceneHandler = GetComponent<SceneHandler>();
+
+        if (sceneHandler != null)
+        {
+            instance = sceneHandler;
+        }
+    }
 
 
 
