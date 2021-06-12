@@ -183,10 +183,13 @@ public class QuantumControlScript : MonoBehaviour
 
         this.DesiredVelocity = GetDesiredVelocityFromValidDirections();
 
+        Vector2 localSyncPosition = cachedControllablePlayers[0].transform.localPosition;
         foreach (var player in cachedControllablePlayers)
         {
-            player.GetComponent<Rigidbody2D>().velocity = DesiredVelocity;
+            player.gameObject.transform.localPosition = localSyncPosition;
+            player.GetComponent<Rigidbody2D>().velocity = this.DesiredVelocity;
         }
+
         if (gameModel.ReloadScene)
         {
             SceneHandler.RestartCurrentScene();
