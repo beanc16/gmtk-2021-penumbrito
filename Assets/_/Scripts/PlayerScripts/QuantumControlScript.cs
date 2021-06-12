@@ -15,15 +15,46 @@ public class QuantumControlScript : MonoBehaviour
     [ReadOnly] public Vector2 DesiredVelocity;
 
     private ControllablePlayer[] cachedControllablePlayers;
+    private GameModel gameModel;
+    private float startingJumpForce;
+    private float startingMoveVelocity;
+    private Vector3[] startingSize;
 
     // Start is called before the first frame update
     void Start()
     {
+        this.startingJumpForce = JumpForce;
+        this.startingMoveVelocity = MoveVelocity;
+
         var gameObjects = GameObject.FindGameObjectsWithTag("Player");
         cachedControllablePlayers = new ControllablePlayer[gameObjects.Length];
-        for(int i = 0; i < gameObjects.Length; i++)
+        this.startingSize = new Vector3[gameObjects.Length];
+        for (int i = 0; i < gameObjects.Length; i++)
         {
             cachedControllablePlayers[i] = gameObjects[i].GetComponent<ControllablePlayer>();
+            this.startingSize[i] = gameObjects[i].transform.localScale;
+        }
+
+        this.gameModel = GameModel.GetInstance();
+        this.gameModel.RegisterPlayerControlScript(this);
+    }
+
+    public void UpdatePlayerEffects()
+    {
+        var effects = gameModel.ActivePlayerEffects;
+
+        if (effects.ContainsKey(PlayerEffect.Jump))
+        {
+            this.JumpForce = effects[PlayerEffect.Jump] > 0 ?
+                this.startingJumpForce * 3 :
+                this.startingJumpForce;
+        }
+
+        if (effects.ContainsKey(PlayerEffect.Speed))
+        {
+            this.MoveVelocity = effects[PlayerEffect.Speed] > 0 ?
+                this.startingMoveVelocity * 1.5f :
+                this.startingMoveVelocity;
         }
     }
 
@@ -37,6 +68,17 @@ public class QuantumControlScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gameModel.ActivePanels.Count == 0)
+        {
+            return;
+        }
+
+        if(gameModel.CountInWinZone == this.cachedControllablePlayers.Length)
+        {
+            SceneHandler.LoadScene("GameOver");
+            return;
+        }
+
         bool[] validDirections = new bool[(int)EDirections.Count];
         for (int i = 0; i < (int)EDirections.Count; ++i)
         {
@@ -45,7 +87,7 @@ public class QuantumControlScript : MonoBehaviour
 
         foreach (var player in cachedControllablePlayers)
         {
-            if (GameModel.GetInstance().ActivePanels[player.PlayerIndex] == false)
+            if (gameModel.ActivePanels[player.PlayerIndex] == false)
             {
                 continue;
             }
@@ -72,7 +114,8 @@ public class QuantumControlScript : MonoBehaviour
                     }
 
                     //Jumping
-                    if (Vector2.Dot(revContactNormal, Vector2.down) >= COS_45 && Input.GetKeyDown(KeyCode.UpArrow))
+                    if (Vector2.Dot(revContactNormal, Vector2.down) >= COS_45 &&
+                        (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)))
                     {
                         Rigidbody2D playerRigidBody = player.GetComponent<Rigidbody2D>();
                         playerRigidBody.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
@@ -82,22 +125,24 @@ public class QuantumControlScript : MonoBehaviour
         }
 
         DesiredVelocity = new Vector2(0f, 0f);
-        if (Input.GetKey(KeyCode.RightArrow) && validDirections[(int)EDirections.Right])
+        if ((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) &&
+            validDirections[(int)EDirections.Right])
         {
             DesiredVelocity += Vector2.right * MoveVelocity;
         }
-        if (Input.GetKey(KeyCode.LeftArrow) && validDirections[(int)EDirections.Left])
+        if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) &&
+            validDirections[(int)EDirections.Left])
         {
             DesiredVelocity += Vector2.left * MoveVelocity;
         }
 
         foreach (var player in cachedControllablePlayers)
         {
-            if (GameModel.GetInstance().ActivePanels[player.PlayerIndex] == false)
+            if (gameModel.ActivePanels[player.PlayerIndex] == false)
             {
                 continue;
             }
-            player.transform.position += (Vector3) DesiredVelocity * Time.deltaTime;
+            player.transform.position += (Vector3)DesiredVelocity * Time.deltaTime;
         }
     }
 }

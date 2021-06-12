@@ -1,3 +1,4 @@
+using Assets.__.Scripts;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -46,6 +47,7 @@ public class SceneHandler : MonoBehaviour
 
     public static void LoadScene(string sceneName)
     {
+        GameModel.GetInstance().Reset();
         // The scene CAN be loaded
         if (Application.CanStreamedLevelBeLoaded(sceneName))
         {

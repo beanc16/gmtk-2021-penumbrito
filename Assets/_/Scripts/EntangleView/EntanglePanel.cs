@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.__.Scripts.PlayerScripts;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Assets.__.Scripts.EntangleView
@@ -28,6 +29,8 @@ namespace Assets.__.Scripts.EntangleView
             var gameModel = GameModel.GetInstance();
             gameModel.ActivePanels[this.panelNumber] = !gameModel.ActivePanels[this.panelNumber];
 
+            gameModel.UpdatePlayerEffect(this.panelNumber, gameModel.ActivePanels[this.panelNumber]);
+
             //imagePanel.gameObject.SetActive(gameModel.ActivePanels[this.panelNumber]);
             this.SetLightStates(gameModel.ActivePanels[this.panelNumber]);
             //Inform systems that need it of who is active and who is not.
@@ -45,8 +48,15 @@ namespace Assets.__.Scripts.EntangleView
         private void SetLightStates(bool active)
         {
             var gameModel = GameModel.GetInstance();
-            gameModel.IndexToLight[this.panelNumber].enabled = active;
-            //gameModel.IndexToDark[this.panelNumber].enabled = !active;
+            if (gameModel.IndexToLight.ContainsKey(this.panelNumber))
+            {
+                gameModel.IndexToLight[this.panelNumber].enabled = active;
+            }
+
+            if (gameModel.IndexToDark.ContainsKey(this.panelNumber))
+            {
+                gameModel.IndexToDark[this.panelNumber].enabled = !active;
+            }
         }
     }
 }

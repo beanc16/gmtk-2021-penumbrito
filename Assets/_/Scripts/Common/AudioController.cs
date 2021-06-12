@@ -24,7 +24,12 @@ public class AudioController : MonoBehaviour
 
     private void Start()
     {
-        AudioController.instance = this;
+        if(instance != null)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        instance = this;
 
         this.globalVolume = PlayerPrefs.GetFloat(GLOBAL_PREFS_KEY);
         this.musicVolume = PlayerPrefs.GetFloat(MUSIC_PREFS_KEY);

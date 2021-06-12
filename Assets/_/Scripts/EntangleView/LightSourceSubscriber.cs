@@ -5,10 +5,9 @@ namespace Assets.__.Scripts.EntangleView
 {
     public class LightSourceSubscriber : MonoBehaviour
     {
-        [SerializeField] private int index;
         [SerializeField] private bool active;
 
-        private void Awake()
+        public void Setup(int index)
         {
             if (active)
             {

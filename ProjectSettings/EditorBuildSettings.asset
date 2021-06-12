@@ -12,8 +12,11 @@ EditorBuildSettings:
     path: Assets/Scenes/GameOver.unity
     guid: a915cd5a8bd0785b6930c425a8de12a6
   - enabled: 1
-    path: Assets/Scenes/Level.unity
+    path: Assets/Scenes/Level1.unity
     guid: 83210781f4ed8ffb88736bd756be2b16
+  - enabled: 1
+    path: Assets/Scenes/Level2.unity
+    guid: 4d1038df1b728c543802ec4176a33716
   - enabled: 1
     path: Assets/Scenes/kevin_scene.unity
     guid: db330a88d8973d14e9dd24750d76fcc9
