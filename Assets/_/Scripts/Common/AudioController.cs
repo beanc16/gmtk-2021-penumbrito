@@ -59,7 +59,7 @@ public class AudioController : MonoBehaviour
 
         PlayerPrefs.SetFloat(GLOBAL_PREFS_KEY, instance.globalVolume);
 
-        instance.audioMixer.SetFloat("GlobalVolume", instance.globalVolume);
+        UpdateMixer("GlobalVolume", instance.globalVolume);
     }
 
     public static void UpdateMusicVolume(float newValue)
@@ -67,7 +67,7 @@ public class AudioController : MonoBehaviour
         instance.musicVolume = newValue;
         PlayerPrefs.SetFloat(MUSIC_PREFS_KEY, instance.musicVolume);
 
-        instance.audioMixer.SetFloat("MusicVolume", instance.musicVolume);
+        UpdateMixer("MusicVolume", instance.musicVolume);
     }
 
     public static void UpdateSfxVolume(float newValue)
@@ -75,6 +75,17 @@ public class AudioController : MonoBehaviour
         instance.sfxVolume = newValue;
         PlayerPrefs.SetFloat(SFX_PREFS_KEY, instance.sfxVolume);
 
-        instance.audioMixer.SetFloat("SfxVolume", instance.sfxVolume);
+        UpdateMixer("SfxVolume", instance.sfxVolume);
+    }
+
+    private static void UpdateMixer(string id, float value)
+    {
+        var dbVolume = Mathf.Log10(value) * 20;
+        if (value == 0.0f)
+        {
+            dbVolume = -80.0f;
+        }
+
+        instance.audioMixer.SetFloat(id, dbVolume);
     }
 }
