@@ -14,16 +14,16 @@ public class QuantumControlScript : MonoBehaviour
 
     [ReadOnly] public Vector2 DesiredVelocity;
 
-    private PlayerView[] cachedControllablePlayers;
+    private ControllablePlayer[] cachedControllablePlayers;
 
     // Start is called before the first frame update
     void Start()
     {
         var gameObjects = GameObject.FindGameObjectsWithTag("Player");
-        cachedControllablePlayers = new PlayerView[gameObjects.Length];
+        cachedControllablePlayers = new ControllablePlayer[gameObjects.Length];
         for(int i = 0; i < gameObjects.Length; i++)
         {
-            cachedControllablePlayers[i] = gameObjects[i].GetComponent<PlayerView>();
+            cachedControllablePlayers[i] = gameObjects[i].GetComponent<ControllablePlayer>();
         }
     }
 
@@ -49,6 +49,7 @@ public class QuantumControlScript : MonoBehaviour
             {
                 continue;
             }
+
             Vector2 playerPosition = player.transform.position;
             Collider2D playerCollider = player.GetComponent<Collider2D>();
             if (playerCollider)

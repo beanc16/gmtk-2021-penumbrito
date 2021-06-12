@@ -1,18 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class ControllablePlayer : MonoBehaviour
+namespace Assets.__.Scripts.PlayerScripts
 {
-    // Start is called before the first frame update
-    void Start()
+    public class ControllablePlayer : MonoBehaviour
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public int PlayerIndex;
     }
 }
