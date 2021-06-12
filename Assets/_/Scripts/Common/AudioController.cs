@@ -88,4 +88,14 @@ public class AudioController : MonoBehaviour
 
         instance.audioMixer.SetFloat(id, dbVolume);
     }
+
+    public static void MuteMusic()
+    {
+        UpdateMusicVolume(0);
+    }
+
+    public static void MuteSfx()
+    {
+        UpdateSfxVolume(0);
+    }
 }
