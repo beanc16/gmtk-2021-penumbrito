@@ -40,7 +40,7 @@ namespace Assets.__.Scripts.EntangleView
                 0);
             rt.sizeDelta = new Vector2(width, height);
 
-            GameModel.GetInstance().ActivePanels.Add(true);
+            GameModel.GetInstance().ActivePanels.Add(false);
 
             newInstance.Setup(panelIndex);
         }
