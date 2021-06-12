@@ -11,7 +11,7 @@ namespace Assets.__.Scripts.EntangleView
         [SerializeField] private RectTransform canvasTransform;
         [SerializeField] private float bottomSpacing;
 
-        private void Start()
+        private void Awake()
         {
             instance = this;
 

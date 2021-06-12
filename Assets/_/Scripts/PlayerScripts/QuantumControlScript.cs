@@ -104,7 +104,7 @@ public class QuantumControlScript : MonoBehaviour
 
     }
 
-    public void OnPlayerHitHazard(GameObject hazard)
+    public void OnPlayerHitHazard(GameObject hazard, bool wasDeadly)
     {
         bool isLethalDamage = true;
         var effects = gameModel.ActivePlayerEffects; 
@@ -117,7 +117,8 @@ public class QuantumControlScript : MonoBehaviour
                 isLethalDamage = false;
             }
         }
-        if (effects[PlayerEffect.Pogo] > 0)
+
+        if (wasDeadly == false && effects[PlayerEffect.Pogo] > 0)
         {
             this.CurrentGravityForce = this.JumpForce;
             this.isJumping = true;

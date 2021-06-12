@@ -8,6 +8,7 @@ TagManager:
   - WinZone
   - ActivePowersUI
   - QuantumController
+  - DeadlyHazard
   layers:
   - Default
   - TransparentFX

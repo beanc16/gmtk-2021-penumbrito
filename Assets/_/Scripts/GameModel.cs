@@ -45,6 +45,11 @@ namespace Assets.__.Scripts
 
         public void UpdatePlayerEffect(int index, bool add)
         {
+            if(IndexToPlayerEffect.ContainsKey(index) == false)
+            {
+                return;
+            }
+
             if (add)
             {
                 ActivePlayerEffects[IndexToPlayerEffect[index]]++;

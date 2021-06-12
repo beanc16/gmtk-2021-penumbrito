@@ -23,7 +23,14 @@ namespace Assets.__.Scripts.PlayerScripts
             {
                 GameObject quantumController = GameObject.FindGameObjectsWithTag("QuantumController")[0];
                 QuantumControlScript quantumControlScript = quantumController.GetComponent<QuantumControlScript>();
-                quantumControlScript.OnPlayerHitHazard(collision.gameObject);
+                quantumControlScript.OnPlayerHitHazard(collision.gameObject, false);
+            }
+
+            if (collision.gameObject.tag == "DeadlyHazard")
+            {
+                GameObject quantumController = GameObject.FindGameObjectsWithTag("QuantumController")[0];
+                QuantumControlScript quantumControlScript = quantumController.GetComponent<QuantumControlScript>();
+                quantumControlScript.OnPlayerHitHazard(collision.gameObject, true);
             }
         }
 

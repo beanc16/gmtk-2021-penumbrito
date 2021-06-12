@@ -18,10 +18,10 @@ namespace Assets.__.Scripts.EntangleView
             gameModel = GameModel.GetInstance();
             AudioController.StopMusic("MainMenu");
 
-            this.SetupForSoung("Modern");
-            this.SetupForSoung("Post");
-            this.SetupForSoung("Pre");
-            this.SetupForSoung("Rebuilt");
+            this.SetupForSong("Modern");
+            this.SetupForSong("Post");
+            this.SetupForSong("Pre");
+            this.SetupForSong("Rebuilt");
 
             AudioController.PlayMusic("Ambient");
 
@@ -30,7 +30,7 @@ namespace Assets.__.Scripts.EntangleView
             this.OnActivePanelChanged();
         }
 
-        private void SetupForSoung(string song)
+        private void SetupForSong(string song)
         {
             AudioController.PlayMusic(song);
             baseVolume.Add(song, AudioController.GetMusicVolume(song));
