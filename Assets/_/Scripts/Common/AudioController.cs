@@ -59,22 +59,43 @@ public class AudioController : MonoBehaviour
 
     public static void PlaySfx(string sfxName)
     {
-        instance.sfxSources[sfxName].Play();
+        if (instance != null && instance.sfxSources.ContainsKey(sfxName))
+        {
+            instance.sfxSources[sfxName].Play();
+        }
     }
 
     public static void PlayMusic(string music)
     {
-        instance.musicSources[music].Play();
+        if (instance != null && instance.musicSources.ContainsKey(music))
+        {
+            instance.musicSources[music].Play();
+        }
     }
 
     public static void StopMusic(string music)
     {
-        instance.musicSources[music].Stop();
+        if (instance != null && instance.musicSources.ContainsKey(music))
+        {
+            instance.musicSources[music].Stop();
+        }
     }
 
-    public static void MuteMusic(string music, bool muted)
+    public static void FadeMusic(string music, float volume)
     {
-        instance.musicSources[music].mute = muted;
+        if (instance != null && instance.musicSources.ContainsKey(music))
+        {
+            instance.musicSources[music].volume = volume;
+        }
+    }
+
+    public static float GetMusicVolume(string music)
+    {
+        if (instance != null && instance.musicSources.ContainsKey(music))
+        {
+            return instance.musicSources[music].volume;
+        }
+        return 0;
     }
 
     public static void UpdateGlobalVolume(float newValue)
