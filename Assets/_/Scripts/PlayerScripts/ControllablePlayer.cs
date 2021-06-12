@@ -21,7 +21,9 @@ namespace Assets.__.Scripts.PlayerScripts
             //Check for a match with the specified name on any GameObject that collides with your GameObject
             if (collision.gameObject.tag == "Hazard")
             {
-                GameModel.GetInstance().ReloadScene = true;
+                GameObject quantumController = GameObject.FindGameObjectsWithTag("QuantumController")[0];
+                QuantumControlScript quantumControlScript = quantumController.GetComponent<QuantumControlScript>();
+                quantumControlScript.OnPlayerHitHazard(collision.gameObject);
             }
         }
 

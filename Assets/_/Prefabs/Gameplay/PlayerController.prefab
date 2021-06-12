@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7396300741842460133}
   m_Layer: 0
   m_Name: PlayerController
-  m_TagString: Untagged
+  m_TagString: QuantumController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49,4 +49,5 @@ MonoBehaviour:
   DashForce: 5
   MoveVelocity: 2
   CurrentGravityForce: 0
+  CurrentDashForce: 0
   DesiredVelocity: {x: 0, y: 0}

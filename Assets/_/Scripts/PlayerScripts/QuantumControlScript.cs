@@ -63,7 +63,6 @@ public class QuantumControlScript : MonoBehaviour
     public void UpdatePlayerEffects()
     {
         var effects = gameModel.ActivePlayerEffects;
-
         string activePowersText = "Active Powers : ";
 
         if (effects.ContainsKey(PlayerEffect.Speed))
@@ -77,7 +76,6 @@ public class QuantumControlScript : MonoBehaviour
                 activePowersText += "| Speed |";
             }
         }
-
         if (effects.ContainsKey(PlayerEffect.Dash))
         {
             if (effects[PlayerEffect.Dash] > 0)
@@ -85,11 +83,52 @@ public class QuantumControlScript : MonoBehaviour
                 activePowersText += "| Dash |";
             }
         }
+        if (effects.ContainsKey(PlayerEffect.Pogo))
+        {
+            if (effects[PlayerEffect.Pogo] > 0)
+            {
+                activePowersText += "| Pogo |";
+            }
+        }
+        if (effects.ContainsKey(PlayerEffect.Melee))
+        {
+            if (effects[PlayerEffect.Melee] > 0)
+            {
+                activePowersText += "| Melee |";
+            }
+        }
 
         GameObject activePowersObject = GameObject.FindGameObjectsWithTag("ActivePowersUI")[0];
         UnityEngine.UI.Text text = activePowersObject.GetComponent<UnityEngine.UI.Text>();
         text.text = activePowersText;
 
+    }
+
+    public void OnPlayerHitHazard(GameObject hazard)
+    {
+        bool isLethalDamage = true;
+        var effects = gameModel.ActivePlayerEffects; 
+        if (effects[PlayerEffect.Melee] > 0)
+        {
+            if (hazard.GetComponent<MeleeObject>())
+            {
+                Destroy(hazard);
+
+                isLethalDamage = false;
+            }
+        }
+        if (effects[PlayerEffect.Pogo] > 0)
+        {
+            this.CurrentGravityForce = this.JumpForce;
+            this.isJumping = true;
+
+            isLethalDamage = false;
+        }
+        
+        if (isLethalDamage)
+        {
+            GameModel.GetInstance().ReloadScene = true;
+        }
     }
 
     enum EDirections : int
