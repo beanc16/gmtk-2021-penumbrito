@@ -610,6 +610,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3500635468142152087, guid: 650267137853bd94d9d1e08b19f8a428, type: 3}
+      propertyPath: Mute
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9182491784537752682, guid: 650267137853bd94d9d1e08b19f8a428, type: 3}
       propertyPath: m_Name
       value: GlobalAudioController
