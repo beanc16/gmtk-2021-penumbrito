@@ -146,6 +146,11 @@ public class QuantumControlScript : MonoBehaviour
                 player.transform.position += (Vector3)DesiredVelocity * Time.deltaTime;
             }
         }
+
+        if (gameModel.ReloadScene)
+        {
+            SceneHandler.RestartCurrentScene();
+        }
     }
 
     void ComputeGravityForce()

@@ -24,6 +24,7 @@ namespace Assets.__.Scripts
         public readonly Dictionary<PlayerEffect, int> ActivePlayerEffects = new Dictionary<PlayerEffect, int>();
         public readonly Dictionary<int, PlayerEffect> IndexToPlayerEffect = new Dictionary<int, PlayerEffect>();
         public int CountInWinZone;
+        public bool ReloadScene;
 
         private QuantumControlScript registeredQuantumControlScript;
 
@@ -63,6 +64,7 @@ namespace Assets.__.Scripts
             this.ActivePlayerEffects.Clear();
             this.registeredQuantumControlScript = null;
             this.CountInWinZone = 0;
+            this.ReloadScene = false;
 
             this.Setup();
         }

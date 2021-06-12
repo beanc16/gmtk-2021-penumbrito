@@ -21,7 +21,7 @@ namespace Assets.__.Scripts.PlayerScripts
             //Check for a match with the specified name on any GameObject that collides with your GameObject
             if (collision.gameObject.tag == "Hazard")
             {
-                SceneHandler.RestartCurrentScene();
+                GameModel.GetInstance().ReloadScene = true;
             }
         }
 
