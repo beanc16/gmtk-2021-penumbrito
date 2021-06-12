@@ -46,7 +46,7 @@ namespace Assets.__.Scripts.EntangleView
         {
             var gameModel = GameModel.GetInstance();
             gameModel.IndexToLight[this.panelNumber].enabled = active;
-            gameModel.IndexToDark[this.panelNumber].enabled = !active;
+            //gameModel.IndexToDark[this.panelNumber].enabled = !active;
         }
     }
 }
