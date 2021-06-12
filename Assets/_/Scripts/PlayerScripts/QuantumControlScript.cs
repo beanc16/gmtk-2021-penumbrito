@@ -10,16 +10,17 @@ public class QuantumControlScript : MonoBehaviour
     static float COS_45 = 0.70710f;
 
     public float JumpForce = 10f;
-    public float JumpTime = 2f;
 
     public float GravityForce = -9.81f;
+
+    public float DashTime = 1f;
+    public float DashForce = 10f;
 
     public float MoveVelocity = 5f;
 
     [ReadOnly] public float CurrentGravityForce;
+    [ReadOnly] public float CurrentDashForce;
     [ReadOnly] public Vector2 DesiredVelocity;
-
-    private float jumpTimer = 0f;
 
     private ControllablePlayer[] cachedControllablePlayers;
     private GameModel gameModel;
@@ -28,6 +29,12 @@ public class QuantumControlScript : MonoBehaviour
     private Vector3[] startingSize;
 
     private bool[] validDirections;
+
+    private bool isJumping;
+    private bool isDashing;
+
+    private bool canDash;
+    private Vector2 dashDirection;
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +55,9 @@ public class QuantumControlScript : MonoBehaviour
         this.gameModel.RegisterPlayerControlScript(this);
 
         this.CurrentGravityForce = GravityForce;
+        this.CurrentDashForce = DashForce;
+
+        this.canDash = true;
     }
 
     public void UpdatePlayerEffects()
@@ -77,8 +87,8 @@ public class QuantumControlScript : MonoBehaviour
         GameObject activePowersObject = GameObject.FindGameObjectsWithTag("ActivePowersUI")[0];
         UnityEngine.UI.Text text = activePowersObject.GetComponent<UnityEngine.UI.Text>();
         text.text = activePowersText;*/
-
-
+        var effects = gameModel.ActivePlayerEffects;
+        effects[PlayerEffect.Dash] = 1;
     }
 
     enum EDirections : int
@@ -109,10 +119,6 @@ public class QuantumControlScript : MonoBehaviour
 
         foreach (var player in cachedControllablePlayers)
         {
-            /*if (gameModel.ActivePanels[player.PlayerIndex] == false)
-            {
-                continue;
-            }*/
             Vector2 playerPosition = player.transform.position;
             Collider2D playerCollider = player.GetComponent<Collider2D>();
             if (playerCollider)
@@ -131,20 +137,16 @@ public class QuantumControlScript : MonoBehaviour
             }
         }
 
+        this.DesiredVelocity = new Vector2(0f, 0f);
         ComputeGravityForce();
+        ComputeDashForce();
+        ComputeInputMovement();
+
         this.DesiredVelocity = GetDesiredVelocityFromValidDirections();
 
         foreach (var player in cachedControllablePlayers)
         {
-            /*if (gameModel.ActivePanels[player.PlayerIndex] == false)
-            {
-                continue;
-            }*/
-            // ???
-            if (Time.deltaTime < 0.1f)
-            {
-                player.transform.position += (Vector3)DesiredVelocity * Time.deltaTime;
-            }
+            player.GetComponent<Rigidbody2D>().velocity = DesiredVelocity;
         }
     }
 
@@ -152,26 +154,66 @@ public class QuantumControlScript : MonoBehaviour
     {
         if (!this.validDirections[(int)EDirections.Down])
         {
-            if (CurrentGravityForce <= 0f)
+            if (Input.GetKeyDown(KeyCode.Space) && !this.isJumping)
             {
-                if (GetInputFromDirection(EDirections.Up))
-                {
-                    this.CurrentGravityForce = this.JumpForce;
-                    this.jumpTimer = this.JumpTime;
-                }
-                else
-                {
-                    this.CurrentGravityForce = this.GravityForce;
-                    this.jumpTimer = 0f;
-                }
+                this.CurrentGravityForce = this.JumpForce;
+                this.isJumping = true;
+            }
+            if (this.CurrentGravityForce < 0f)
+            {
+                this.isJumping = false;
             }
         }
-
-        if (this.jumpTimer > 0f)
+        else
         {
-            this.jumpTimer -= Time.deltaTime;
-            // 0 (Gravity Force) -> 1 (Jump Force) this is reversed cause lazy
-            this.CurrentGravityForce = Mathf.Lerp(this.GravityForce, this.JumpForce, jumpTimer / this.JumpTime);
+            this.CurrentGravityForce += this.GravityForce * Time.deltaTime;
+        }
+    }
+
+    void ComputeDashForce()
+    {
+        if (this.CurrentDashForce <= 0f)
+        {
+            if (this.canDash && Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                var effects = gameModel.ActivePlayerEffects;
+                if (effects[PlayerEffect.Dash] > 0)
+                {
+                    this.dashDirection = new Vector2(0f, 0f);
+                    if (GetInputFromDirection(EDirections.Up))
+                    {
+                        this.dashDirection += Vector2.up;
+                    }
+                    if (GetInputFromDirection(EDirections.Down))
+                    {
+                        this.dashDirection += Vector2.down;
+                    }
+                    if (GetInputFromDirection(EDirections.Right))
+                    {
+                        this.dashDirection += Vector2.right;
+                    }
+                    if (GetInputFromDirection(EDirections.Left))
+                    {
+                        this.dashDirection += Vector2.left;
+                    }
+                    this.dashDirection.Normalize();
+                    this.CurrentGravityForce = 0f;
+                    this.CurrentDashForce = this.DashForce;
+                    this.isDashing = true;
+                }
+            }
+            else
+            {
+                if (!this.validDirections[(int)EDirections.Down])
+                {
+                    this.canDash = true;
+                }
+                this.isDashing = false;
+            }
+        }
+        else
+        {
+            this.CurrentDashForce -= DashForce * Time.deltaTime;
         }
     }
 
@@ -184,6 +226,8 @@ public class QuantumControlScript : MonoBehaviour
                 return Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A);
             case EDirections.Right:
                 return Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D);
+            case EDirections.Down:
+                return Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S);
         }
         return false;
     }
@@ -208,31 +252,43 @@ public class QuantumControlScript : MonoBehaviour
         }
     }
 
+    void ComputeInputMovement()
+    {
+        if (GetInputFromDirection(EDirections.Right))
+        {
+            this.DesiredVelocity += Vector2.right * this.MoveVelocity;
+        }
+        if (GetInputFromDirection(EDirections.Left))
+        {
+            this.DesiredVelocity += Vector2.left * this.MoveVelocity;
+        }
+    }
+
     Vector2 GetDesiredVelocityFromValidDirections()
     {
-        Vector2 desiredVelocity = new Vector2(0f,0f);
+        Vector2 desiredVelocity = this.DesiredVelocity;
 
-        if (GetInputFromDirection(EDirections.Right) && this.validDirections[(int)EDirections.Right])
+        //Apply dash
+        desiredVelocity += this.dashDirection * this.CurrentDashForce;
+
+        //Apply gravity
+        desiredVelocity += Vector2.up * this.CurrentGravityForce;
+
+        if (!this.validDirections[(int)EDirections.Right])
         {
-            desiredVelocity += Vector2.right* this.MoveVelocity;
+            desiredVelocity = new Vector2(Mathf.Min(desiredVelocity.x, 0f), desiredVelocity.y);
         }
-        if (GetInputFromDirection(EDirections.Left) && this.validDirections[(int)EDirections.Left])
+        if (!this.validDirections[(int)EDirections.Left])
         {
-            desiredVelocity += Vector2.left * this.MoveVelocity;
+            desiredVelocity = new Vector2(Mathf.Max(desiredVelocity.x, 0f), desiredVelocity.y);
         }
-        if (this.CurrentGravityForce > 0f)
+        if (!this.validDirections[(int)EDirections.Up])
         {
-            if (this.validDirections[(int)EDirections.Up])
-            {
-                desiredVelocity += Vector2.up * this.CurrentGravityForce;
-            }
+            desiredVelocity = new Vector2(desiredVelocity.x, Mathf.Min(desiredVelocity.y, 0f));
         }
-        else
+        if (!this.validDirections[(int)EDirections.Down])
         {
-            if (this.validDirections[(int)EDirections.Down])
-            {
-                desiredVelocity += Vector2.up * this.CurrentGravityForce;
-            }
+            desiredVelocity = new Vector2(desiredVelocity.x, Mathf.Max(desiredVelocity.y, 0f));
         }
 
         return desiredVelocity;

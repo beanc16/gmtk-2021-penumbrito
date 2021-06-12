@@ -43,6 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65abb3685fc907941819dd0afa09efca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JumpForce: 1
+  JumpForce: 2
+  GravityForce: -5
+  DashTime: 1
+  DashForce: 5
   MoveVelocity: 2
+  CurrentGravityForce: 0
   DesiredVelocity: {x: 0, y: 0}

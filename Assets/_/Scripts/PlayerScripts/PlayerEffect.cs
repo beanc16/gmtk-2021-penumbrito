@@ -3,7 +3,9 @@
     public enum PlayerEffect
     {
         None,
-        Jump,
-        Speed
+        Pogo,
+        Speed,
+        Dash,
+        Melee
     }
 }
