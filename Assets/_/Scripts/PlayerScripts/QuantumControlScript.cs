@@ -148,6 +148,10 @@ public class QuantumControlScript : MonoBehaviour
         {
             player.GetComponent<Rigidbody2D>().velocity = DesiredVelocity;
         }
+        if (gameModel.ReloadScene)
+        {
+            SceneHandler.RestartCurrentScene();
+        }
     }
 
     void ComputeGravityForce()
@@ -168,6 +172,7 @@ public class QuantumControlScript : MonoBehaviour
         {
             this.CurrentGravityForce += this.GravityForce * Time.deltaTime;
         }
+
     }
 
     void ComputeDashForce()

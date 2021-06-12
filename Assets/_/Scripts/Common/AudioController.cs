@@ -67,6 +67,16 @@ public class AudioController : MonoBehaviour
         instance.musicSources[music].Play();
     }
 
+    public static void StopMusic(string music)
+    {
+        instance.musicSources[music].Stop();
+    }
+
+    public static void MuteMusic(string music, bool muted)
+    {
+        instance.musicSources[music].mute = muted;
+    }
+
     public static void UpdateGlobalVolume(float newValue)
     {
         instance.globalVolume = newValue;
