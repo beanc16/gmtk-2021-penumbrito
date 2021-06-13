@@ -26,6 +26,13 @@ namespace Assets.__.Scripts.EntangleView
 
         private void OnClickedPanel()
         {
+            GameObject quantumController = GameObject.FindGameObjectsWithTag("QuantumController")[0];
+            QuantumControlScript quantumControlScript = quantumController.GetComponent<QuantumControlScript>();
+            if (!quantumControlScript.CanUpdatePanel())
+            {
+                return;
+            }
+
             var gameModel = GameModel.GetInstance();
             gameModel.ActivePanels[this.panelNumber] = !gameModel.ActivePanels[this.panelNumber];
 

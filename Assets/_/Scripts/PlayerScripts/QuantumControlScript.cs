@@ -32,6 +32,7 @@ public class QuantumControlScript : MonoBehaviour
 
     private bool isJumping;
     private bool isDashing;
+    private bool initialFall;
 
     private bool canDash;
     private Vector2 dashDirection;
@@ -58,6 +59,7 @@ public class QuantumControlScript : MonoBehaviour
         this.CurrentDashForce = DashForce;
 
         this.canDash = true;
+        this.initialFall = true;
     }
 
     public void UpdatePlayerEffects()
@@ -144,6 +146,11 @@ public class QuantumControlScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gameModel.ReloadScene)
+        {
+            SceneHandler.RestartCurrentScene();
+        }
+
         if (gameModel.CountInWinZone == this.cachedControllablePlayers.Length)
         {
             SceneHandler.LoadScene("GameOver");
@@ -156,8 +163,16 @@ public class QuantumControlScript : MonoBehaviour
             this.validDirections[i] = true;
         }
 
+        //Hacky
+        int validPlayers = 0;
         foreach (var player in cachedControllablePlayers)
         {
+            if (gameModel.ActivePanels[player.PlayerIndex] == false && !this.initialFall)
+            {
+                continue;
+            }
+
+            validPlayers++;
             Vector2 playerPosition = player.transform.position;
             Collider2D playerCollider = player.GetComponent<Collider2D>();
             if (playerCollider)
@@ -176,24 +191,37 @@ public class QuantumControlScript : MonoBehaviour
             }
         }
 
+        if (validPlayers == 0 && !this.initialFall)
+        {
+            return;
+        }
+
         this.DesiredVelocity = new Vector2(0f, 0f);
         ComputeGravityForce();
-        ComputeDashForce();
-        ComputeInputMovement();
+        if (!this.initialFall)
+        {
+            ComputeDashForce();
+            ComputeInputMovement();
+        }
 
         this.DesiredVelocity = GetDesiredVelocityFromValidDirections();
 
-        Vector2 localSyncPosition = cachedControllablePlayers[0].transform.localPosition;
+        //Vector2 localSyncPosition = cachedControllablePlayers[0].transform.localPosition;
         foreach (var player in cachedControllablePlayers)
         {
-            player.gameObject.transform.localPosition = localSyncPosition;
+            if (gameModel.ActivePanels[player.PlayerIndex] == false && !this.initialFall)
+            {
+                continue;
+            }
+
+            //player.gameObject.transform.localPosition = localSyncPosition;
             player.GetComponent<Rigidbody2D>().velocity = this.DesiredVelocity;
         }
+    }
 
-        if (gameModel.ReloadScene)
-        {
-            SceneHandler.RestartCurrentScene();
-        }
+    public bool CanUpdatePanel()
+    {
+        return Mathf.Abs(this.DesiredVelocity.magnitude) < Mathf.Epsilon;
     }
 
     void ComputeGravityForce()
@@ -207,6 +235,7 @@ public class QuantumControlScript : MonoBehaviour
             }
             if (this.CurrentGravityForce < 0f)
             {
+                this.initialFall = false;
                 this.isJumping = false;
             }
         }

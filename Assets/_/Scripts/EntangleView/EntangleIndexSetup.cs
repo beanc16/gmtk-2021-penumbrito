@@ -27,7 +27,7 @@ namespace Assets.__.Scripts.EntangleView
 
             GameModel.GetInstance().IndexToPlayerEffect.Add(index, playerEffect);
 
-            GetComponentInChildren<TextMeshPro>().sortingLayerID = SortingLayer.NameToID("Zone" + (index + 1));
+            //GetComponentInChildren<TextMeshPro>().sortingLayerID = SortingLayer.NameToID("Zone" + (index + 1));
 
             var player = GetComponentInChildren<ControllablePlayer>();
             player.SetPlayerIndex(index);

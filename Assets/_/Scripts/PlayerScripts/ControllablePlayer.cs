@@ -13,7 +13,7 @@ namespace Assets.__.Scripts.PlayerScripts
             this.PlayerIndex = playerIndex;
 
             var effect = GameModel.GetInstance().IndexToPlayerEffect[PlayerIndex].ToString().ToUpper();
-            effectText.text = effect[0].ToString();
+            //effectText.text = effect[0].ToString();
         }
 
         void OnCollisionEnter2D(Collision2D collision)
