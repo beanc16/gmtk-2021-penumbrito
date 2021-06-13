@@ -115,6 +115,7 @@ GameObject:
   - component: {fileID: 475120231}
   - component: {fileID: 475120230}
   - component: {fileID: 475120229}
+  - component: {fileID: 141007863}
   m_Layer: 5
   m_Name: Restart Button
   m_TagString: Untagged
@@ -235,6 +236,34 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 266277318329980116}
+        m_TargetAssemblyTypeName: AudioClick, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &141007863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475120227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6396d92b259f5b223a3e22f6a9770d02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onHoverEnterAudioName: Click1
+  onHoverEnterAudioType: 1
+  onHoverExitAudioName: 
+  onHoverExitAudioType: 1
 --- !u!1 &701518985
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,6 +277,7 @@ GameObject:
   - component: {fileID: 701518987}
   - component: {fileID: 6648261279722379040}
   - component: {fileID: 2297467062823085189}
+  - component: {fileID: 141007860}
   m_Layer: 5
   m_Name: Next Level Button
   m_TagString: Untagged
@@ -340,6 +370,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 266277318329980116}
+        m_TargetAssemblyTypeName: AudioClick, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6648261279722379040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -371,6 +413,22 @@ MonoBehaviour:
   activeLevelImage: {fileID: 6044339612137975706}
   inactiveLevelImage: {fileID: 4921390561505327642}
   button: {fileID: 701518987}
+--- !u!114 &141007860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701518985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6396d92b259f5b223a3e22f6a9770d02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onHoverEnterAudioName: Click1
+  onHoverEnterAudioType: 1
+  onHoverExitAudioName: 
+  onHoverExitAudioType: 1
 --- !u!1 &971012746
 GameObject:
   m_ObjectHideFlags: 0
@@ -383,6 +441,7 @@ GameObject:
   - component: {fileID: 971012750}
   - component: {fileID: 971012749}
   - component: {fileID: 971012748}
+  - component: {fileID: 141007862}
   m_Layer: 5
   m_Name: Settings Button
   m_TagString: Untagged
@@ -503,6 +562,34 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 266277318329980116}
+        m_TargetAssemblyTypeName: AudioClick, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &141007862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 971012746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6396d92b259f5b223a3e22f6a9770d02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onHoverEnterAudioName: Click1
+  onHoverEnterAudioType: 1
+  onHoverExitAudioName: 
+  onHoverExitAudioType: 1
 --- !u!1 &993835122
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,6 +674,7 @@ GameObject:
   - component: {fileID: 1283548341}
   - component: {fileID: 1283548340}
   - component: {fileID: 1283548339}
+  - component: {fileID: 141007861}
   m_Layer: 5
   m_Name: Home Button
   m_TagString: Untagged
@@ -707,6 +795,34 @@ MonoBehaviour:
           m_StringArgument: MainMenu
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 266277318329980116}
+        m_TargetAssemblyTypeName: AudioClick, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MainMenu
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &141007861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1283548337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6396d92b259f5b223a3e22f6a9770d02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onHoverEnterAudioName: Click1
+  onHoverEnterAudioType: 1
+  onHoverExitAudioName: 
+  onHoverExitAudioType: 1
 --- !u!1 &1610183781
 GameObject:
   m_ObjectHideFlags: 0
@@ -1920,6 +2036,7 @@ RectTransform:
   - {fileID: 1841968484}
   - {fileID: 3901273092634909597}
   - {fileID: 6946463879084685582}
+  - {fileID: 266277318329980119}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3243,3 +3360,76 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8048538154698925613, guid: 59cb497579d57c4418593a7dedeb3455, type: 3}
   m_PrefabInstance: {fileID: 3791714105724008063}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4498845121302521986
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3791714105360525609}
+    m_Modifications:
+    - target: {fileID: 4457747802603207765, guid: 763c94fe103afa26aaa38c7b7bf36bed, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4457747802603207765, guid: 763c94fe103afa26aaa38c7b7bf36bed, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4457747802603207765, guid: 763c94fe103afa26aaa38c7b7bf36bed, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4457747802603207765, guid: 763c94fe103afa26aaa38c7b7bf36bed, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4457747802603207765, guid: 763c94fe103afa26aaa38c7b7bf36bed, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4457747802603207765, guid: 763c94fe103afa26aaa38c7b7bf36bed, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4457747802603207765, guid: 763c94fe103afa26aaa38c7b7bf36bed, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4457747802603207765, guid: 763c94fe103afa26aaa38c7b7bf36bed, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4457747802603207765, guid: 763c94fe103afa26aaa38c7b7bf36bed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4457747802603207765, guid: 763c94fe103afa26aaa38c7b7bf36bed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4457747802603207765, guid: 763c94fe103afa26aaa38c7b7bf36bed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4457747802603207767, guid: 763c94fe103afa26aaa38c7b7bf36bed, type: 3}
+      propertyPath: m_Name
+      value: OnClickSfx
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 763c94fe103afa26aaa38c7b7bf36bed, type: 3}
+--- !u!4 &266277318329980119 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4457747802603207765, guid: 763c94fe103afa26aaa38c7b7bf36bed, type: 3}
+  m_PrefabInstance: {fileID: 4498845121302521986}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &266277318329980116 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4457747802603207766, guid: 763c94fe103afa26aaa38c7b7bf36bed, type: 3}
+  m_PrefabInstance: {fileID: 4498845121302521986}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4842cc69c57ca10d3b4d35c2c0fbd520, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
