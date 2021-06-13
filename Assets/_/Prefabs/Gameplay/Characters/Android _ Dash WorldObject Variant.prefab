@@ -1,5 +1,24 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!95 &476499903
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3357642519525179976}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bffe719f4f6a49b6c95bec3bd78faaa0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &7704487549288629880
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -83,6 +102,18 @@ PrefabInstance:
       propertyPath: PlayerIndex
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4932400984129209358, guid: 4442b1e44b0273644a5dd0f08ae80d13, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4932400984129209358, guid: 4442b1e44b0273644a5dd0f08ae80d13, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4932400984129209393, guid: 4442b1e44b0273644a5dd0f08ae80d13, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0445da435d3f44623a8c38afdac6f2fb, type: 3}
     - target: {fileID: 4932400984129209393, guid: 4442b1e44b0273644a5dd0f08ae80d13, type: 3}
       propertyPath: m_SortingLayer
       value: 4
@@ -103,8 +134,20 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5991551364632268561, guid: 4442b1e44b0273644a5dd0f08ae80d13, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 30.0011
+      objectReference: {fileID: 0}
+    - target: {fileID: 5991551364632268561, guid: 4442b1e44b0273644a5dd0f08ae80d13, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 39.82
+      objectReference: {fileID: 0}
     - target: {fileID: 7368863061724643640, guid: 4442b1e44b0273644a5dd0f08ae80d13, type: 3}
       propertyPath: index
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7368863061724643640, guid: 4442b1e44b0273644a5dd0f08ae80d13, type: 3}
+      propertyPath: playerEffect
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7831777715203344936, guid: 4442b1e44b0273644a5dd0f08ae80d13, type: 3}
@@ -142,3 +185,8 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 3429474976697100460, guid: 4442b1e44b0273644a5dd0f08ae80d13, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4442b1e44b0273644a5dd0f08ae80d13, type: 3}
+--- !u!1 &3357642519525179976 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4932400984129209392, guid: 4442b1e44b0273644a5dd0f08ae80d13, type: 3}
+  m_PrefabInstance: {fileID: 7704487549288629880}
+  m_PrefabAsset: {fileID: 0}
