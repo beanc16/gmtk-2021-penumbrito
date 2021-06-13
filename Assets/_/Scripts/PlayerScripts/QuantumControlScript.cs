@@ -20,6 +20,7 @@ public class QuantumControlScript : MonoBehaviour
     public float DashForce = 10f;
     public float DashDecelerationMultiplier = 3f;
 
+    public float MoveAccelMult = 0.5f;
     public float MoveVelocity = 5f;
 
     [ReadOnly] public float CurrentGravityForce;
@@ -239,7 +240,12 @@ public class QuantumControlScript : MonoBehaviour
             }
 
             //player.gameObject.transform.localPosition = localSyncPosition;
-            player.GetComponent<Rigidbody2D>().velocity = this.DesiredVelocity;
+            float desiredX = this.DesiredVelocity.x;
+            float desiredY = this.DesiredVelocity.y;
+            float currentX = player.GetComponent<Rigidbody2D>().velocity.x;
+
+            Vector2 adjustedDesiredVelocity = new Vector2(Mathf.Lerp(currentX, desiredX, MoveAccelMult), desiredY);
+            player.GetComponent<Rigidbody2D>().velocity = adjustedDesiredVelocity;
         }
     }
 
@@ -268,7 +274,6 @@ public class QuantumControlScript : MonoBehaviour
             float gravityForce = this.GravityForce;
             if (this.isJumping)
             {
-                Mathf.Abs(this.CurrentGravityForce);
                 gravityForce *= Mathf.Lerp(JumpGravityMultiplierMax, JumpGravityMultiplierMin, this.CurrentGravityForce / JumpForce);
             }
 
