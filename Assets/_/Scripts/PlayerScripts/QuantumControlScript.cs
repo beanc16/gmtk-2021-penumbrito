@@ -278,6 +278,13 @@ public class QuantumControlScript : MonoBehaviour
             }
 
             player.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+
+            gameModel.ActivePanels[player.PlayerIndex] = false;
+
+            if (gameModel.IndexToCameraEffect.ContainsKey(player.PlayerIndex))
+            {
+                gameModel.IndexToCameraEffect[player.PlayerIndex].enabled = true;
+            }
         }
     }
 
