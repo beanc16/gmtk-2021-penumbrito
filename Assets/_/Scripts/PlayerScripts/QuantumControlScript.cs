@@ -159,9 +159,10 @@ public class QuantumControlScript : MonoBehaviour
             return;
         }
 
-        if (gameModel.CountInWinZone == this.cachedControllablePlayers.Length)
+        if (gameModel.WinningPlayers.Count == this.cachedControllablePlayers.Length)
         {
-            SceneHandler.LoadScene("GameOver");
+            this.Reset();
+            gameModel.GameWon = true;
             return;
         }
 
@@ -175,7 +176,9 @@ public class QuantumControlScript : MonoBehaviour
         int validPlayers = 0;
         foreach (var player in cachedControllablePlayers)
         {
-            if (gameModel.ActivePanels[player.PlayerIndex] == false && !this.initialFall)
+
+            if (gameModel.ActivePanels.Count <= player.PlayerIndex ||
+                (gameModel.ActivePanels[player.PlayerIndex] == false && !this.initialFall))
             {
                 continue;
             }
@@ -248,6 +251,23 @@ public class QuantumControlScript : MonoBehaviour
 
             Vector2 adjustedDesiredVelocity = new Vector2(Mathf.Lerp(currentX, desiredX, MoveAccelMult), desiredY);
             player.GetComponent<Rigidbody2D>().velocity = adjustedDesiredVelocity;
+        }
+    }
+
+    private void Reset()
+    {
+        foreach (var player in cachedControllablePlayers)
+        {
+            Animator animator = player.GetComponent<Animator>();
+            if (animator)
+            {
+                animator.SetBool("IsJumping", false);
+                animator.SetBool("IsRunning", false);
+                animator.SetBool("IsDashing", false);
+                animator.SetBool("IsFalling", false);
+            }
+
+            player.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         }
     }
 

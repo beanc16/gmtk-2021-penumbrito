@@ -38,7 +38,10 @@ namespace Assets.__.Scripts.PlayerScripts
         {
             if (collision.gameObject.tag == "WinZone")
             {
-                GameModel.GetInstance().CountInWinZone++;
+                if (GameModel.GetInstance().WinningPlayers.Contains(this) == false)
+                {
+                    GameModel.GetInstance().WinningPlayers.Add(this);
+                }
                 SpriteRenderer spriteRenderer = collision.gameObject.GetComponent<SpriteRenderer>();
                 if (spriteRenderer)
                 {

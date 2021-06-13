@@ -25,8 +25,9 @@ namespace Assets.__.Scripts
         public readonly Dictionary<PlayerEffect, int> ActivePlayerEffects = new Dictionary<PlayerEffect, int>();
         public readonly Dictionary<int, PlayerEffect> IndexToPlayerEffect = new Dictionary<int, PlayerEffect>();
         public readonly Dictionary<int, SpriteRenderer> IndexToCameraEffect = new Dictionary<int, SpriteRenderer>();
-        public int CountInWinZone;
+        public readonly List<ControllablePlayer> WinningPlayers = new List<ControllablePlayer>();
         public bool ReloadScene;
+        public bool GameWon;
 
         public event Action OnActivePanelChange;
 
@@ -66,7 +67,7 @@ namespace Assets.__.Scripts
 
         public void UpdateActivePanels()
         {
-            this.OnActivePanelChange.Invoke();
+            this.OnActivePanelChange?.Invoke();
         }
 
         public void Reset()
@@ -78,8 +79,9 @@ namespace Assets.__.Scripts
             this.ActivePlayerEffects.Clear();
             this.IndexToCameraEffect.Clear();
             this.registeredQuantumControlScript = null;
-            this.CountInWinZone = 0;
+            this.WinningPlayers.Clear();
             this.ReloadScene = false;
+            this.GameWon = false;
 
             this.Setup();
         }

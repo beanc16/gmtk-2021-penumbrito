@@ -12,12 +12,12 @@ public class AbilityIconToggle : MonoBehaviour
 
     private void Awake()
     {
-        if (activeAbilityImage != null)
+        if (activeAbilityImage == null)
         {
             Debug.LogWarning("activeAbilityImage in AbilityIconToggle not set in inspector under Ability Icons Panel");
         }
 
-        if (inactiveAbilityImage != null)
+        if (inactiveAbilityImage == null)
         {
             Debug.LogWarning("inactiveAbilityImage in AbilityIconToggle not set in inspector under Ability Icons Panel");
         }
