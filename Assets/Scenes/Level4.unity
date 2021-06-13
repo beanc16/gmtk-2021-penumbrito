@@ -1401,7 +1401,7 @@ Transform:
   m_LocalScale: {x: 0.11564, y: 0.1584, z: 1}
   m_Children: []
   m_Father: {fileID: 279539382}
-  m_RootOrder: 1
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &332510441
 BoxCollider2D:
@@ -3476,7 +3476,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 0.38679248, g: 0.38679248, b: 0.38679248, a: 0.77254903}
+  m_Color: {r: 0.09411765, g: 0.09411765, b: 0.09411765, a: 0.77254903}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3657,7 +3657,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 0.38679248, g: 0.38679248, b: 0.38679248, a: 0.77254903}
+  m_Color: {r: 0.09411765, g: 0.09411765, b: 0.09411765, a: 0.77254903}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
