@@ -4768,6 +4768,10 @@ PrefabInstance:
       propertyPath: GravityForce
       value: -5
       objectReference: {fileID: 0}
+    - target: {fileID: 7396300741842460133, guid: e942cacddad7c524bbedd9904739a9f6, type: 3}
+      propertyPath: JumpGravityMultiplierMax
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e942cacddad7c524bbedd9904739a9f6, type: 3}
 --- !u!1 &2101969975

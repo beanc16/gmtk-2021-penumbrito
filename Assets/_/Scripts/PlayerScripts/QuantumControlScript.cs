@@ -13,8 +13,12 @@ public class QuantumControlScript : MonoBehaviour
 
     public float GravityForce = -9.81f;
 
+    public float JumpGravityMultiplierMax = 1.5f;
+    public float JumpGravityMultiplierMin = 0.5f;
+
     public float DashTime = 1f;
     public float DashForce = 10f;
+    public float DashDecelerationMultiplier = 3f;
 
     public float MoveVelocity = 5f;
 
@@ -111,7 +115,7 @@ public class QuantumControlScript : MonoBehaviour
     public void OnPlayerHitHazard(GameObject hazard, bool wasDeadly)
     {
         bool isLethalDamage = true;
-        var effects = gameModel.ActivePlayerEffects; 
+        var effects = gameModel.ActivePlayerEffects;
         if (effects[PlayerEffect.Melee] > 0)
         {
             if (hazard.GetComponent<MeleeObject>())
@@ -129,7 +133,7 @@ public class QuantumControlScript : MonoBehaviour
 
             isLethalDamage = false;
         }
-        
+
         if (isLethalDamage)
         {
             GameModel.GetInstance().ReloadScene = true;
@@ -261,7 +265,14 @@ public class QuantumControlScript : MonoBehaviour
         }
         else
         {
-            this.CurrentGravityForce += this.GravityForce * Time.deltaTime;
+            float gravityForce = this.GravityForce;
+            if (this.isJumping)
+            {
+                Mathf.Abs(this.CurrentGravityForce);
+                gravityForce *= Mathf.Lerp(JumpGravityMultiplierMax, JumpGravityMultiplierMin, this.CurrentGravityForce / JumpForce);
+            }
+
+            this.CurrentGravityForce += gravityForce * Time.deltaTime;
         }
 
     }
@@ -309,13 +320,18 @@ public class QuantumControlScript : MonoBehaviour
         }
         else
         {
-            this.CurrentDashForce = Mathf.Max(0f, this.CurrentDashForce - DashForce * Time.deltaTime);
+            if (this.isDashing && this.CurrentDashForce > 0f)
+            {
+                this.CurrentGravityForce = 0f;
+            }
+            this.CurrentDashForce = Mathf.Max(0f, this.CurrentDashForce - DashForce * DashDecelerationMultiplier * Time.deltaTime);
         }
     }
 
     bool GetInputFromDirection(EDirections direction)
     {
-        switch (direction) {
+        switch (direction)
+        {
             case EDirections.Up:
                 return Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W);
             case EDirections.Left:
