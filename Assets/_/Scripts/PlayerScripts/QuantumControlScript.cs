@@ -248,8 +248,18 @@ public class QuantumControlScript : MonoBehaviour
             float desiredX = this.DesiredVelocity.x;
             float desiredY = this.DesiredVelocity.y;
             float currentX = player.GetComponent<Rigidbody2D>().velocity.x;
+            desiredX = Mathf.Lerp(currentX, desiredX, MoveAccelMult);
 
-            Vector2 adjustedDesiredVelocity = new Vector2(Mathf.Lerp(currentX, desiredX, MoveAccelMult), desiredY);
+            if (!this.validDirections[(int)EDirections.Right])
+            {
+                desiredX = Mathf.Min(desiredX, 0f);
+            }
+            if (!this.validDirections[(int)EDirections.Left])
+            {
+                desiredX = Mathf.Max(desiredX, 0f);
+            }
+
+            Vector2 adjustedDesiredVelocity = new Vector2(desiredX, desiredY);
             player.GetComponent<Rigidbody2D>().velocity = adjustedDesiredVelocity;
         }
     }
