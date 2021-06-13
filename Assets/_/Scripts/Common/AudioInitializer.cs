@@ -23,7 +23,7 @@ public class AudioInitializer : MonoBehaviour
         float musicVolume = Settings.GetSavedMusicVolume();
         bool musicIsMuted = Settings.SavedMusicIsMuted();
 
-        if (musicIsMuted != null && musicIsMuted)
+        if (PlayerPrefs.HasKey("musicIsMuted"))
         {
             if (musicIsMuted)
             {
@@ -42,7 +42,7 @@ public class AudioInitializer : MonoBehaviour
         float sfxVolume = Settings.GetSavedSfxVolume();
         bool sfxIsMuted = Settings.SavedSfxIsMuted();
 
-        if (sfxIsMuted != null && sfxIsMuted)
+        if (PlayerPrefs.HasKey("sfxIsMuted"))
         {
             if (sfxIsMuted)
             {
