@@ -205,6 +205,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   playerEffect: 0
+  powerOff: {fileID: 0}
 --- !u!1 &6635860681964276702
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,7 +431,7 @@ Transform:
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 4932400984129209358}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &7831777715203344936
 Camera:
@@ -459,7 +460,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3
+  orthographic size: 2
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -514,6 +515,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 215829041482617369}
     m_Modifications:
+    - target: {fileID: 5133137700883776823, guid: e7ce0d337c69e4047937a79b5e715453, type: 3}
+      propertyPath: m_Size.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5133137700883776823, guid: e7ce0d337c69e4047937a79b5e715453, type: 3}
+      propertyPath: m_Size.y
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5794370467677670934, guid: e7ce0d337c69e4047937a79b5e715453, type: 3}
       propertyPath: m_Name
       value: ControllablePlayer

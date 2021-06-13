@@ -36,6 +36,7 @@ public class QuantumControlScript : MonoBehaviour
 
     private bool canDash;
     private Vector2 dashDirection;
+    private bool isFacingLeft;
 
     // Start is called before the first frame update
     void Start()
@@ -60,6 +61,7 @@ public class QuantumControlScript : MonoBehaviour
 
         this.canDash = true;
         this.initialFall = true;
+        this.isFacingLeft = false;
     }
 
     public void UpdatePlayerEffects()
@@ -214,6 +216,23 @@ public class QuantumControlScript : MonoBehaviour
                 continue;
             }
 
+            SpriteRenderer spriteRenderer = player.GetComponent<SpriteRenderer>();
+            if (this.DesiredVelocity.x > Mathf.Epsilon)
+            {
+                spriteRenderer.flipX = false;
+            }
+            else if (this.DesiredVelocity.x < -Mathf.Epsilon)
+            {
+                spriteRenderer.flipX = true;
+            }
+
+            Animator animator = player.GetComponent<Animator>();
+            if (animator)
+            {
+                animator.SetBool("IsJumping", this.isJumping);
+                animator.SetBool("IsRunning", Mathf.Abs(this.DesiredVelocity.x) > Mathf.Epsilon);
+            }
+
             //player.gameObject.transform.localPosition = localSyncPosition;
             player.GetComponent<Rigidbody2D>().velocity = this.DesiredVelocity;
         }
@@ -289,7 +308,7 @@ public class QuantumControlScript : MonoBehaviour
         }
         else
         {
-            this.CurrentDashForce -= DashForce * Time.deltaTime;
+            this.CurrentDashForce = Mathf.Max(0f, this.CurrentDashForce - DashForce * Time.deltaTime);
         }
     }
 
