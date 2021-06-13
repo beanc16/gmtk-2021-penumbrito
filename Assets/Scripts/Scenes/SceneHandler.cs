@@ -97,6 +97,30 @@ public class SceneHandler : MonoBehaviour
         TryCallOnBeforeExitGameEvent();         // OnBeforeExitGame()
         Application.Quit();
     }
+
+
+
+    public static void LoadLevel(int num)
+    {
+        SceneHandler.LoadScene("Level" + num);
+    }
+    
+    public static void LoadNextLevel()
+    {
+        int levelNum;
+
+        if (LevelSaving.NextLevelIsHighScore())
+        {
+            LevelSaving.IncrementHighestSavedLevel();
+            levelNum = LevelSaving.GetHighestLevel();
+        }
+        else
+        {
+            levelNum = LevelSaving.GetCurrentLevel() + 1;
+        }
+
+        SceneHandler.LoadScene("Level" + levelNum);
+    }
 	
 	
 	
