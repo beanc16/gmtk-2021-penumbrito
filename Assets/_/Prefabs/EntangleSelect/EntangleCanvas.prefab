@@ -30,17 +30,11 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-<<<<<<< HEAD
-  - {fileID: 1573453178}
-  m_Father: {fileID: 1875284552}
-  m_RootOrder: 1
-=======
   - {fileID: 1724816249}
   - {fileID: 1819213496}
   - {fileID: 77975161}
   m_Father: {fileID: 755588231}
   m_RootOrder: 0
->>>>>>> 86d0e030d9d2b1c13a517e267fd56038c2c997f5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -111,9 +105,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 1
   m_ChildScaleHeight: 1
   m_ReverseArrangement: 0
-<<<<<<< HEAD
---- !u!1 &592291460
-=======
 --- !u!1 &77975160
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,7 +261,6 @@ MonoBehaviour:
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
 --- !u!1 &348896669
->>>>>>> 86d0e030d9d2b1c13a517e267fd56038c2c997f5
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -412,8 +402,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-<<<<<<< HEAD
-=======
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -841,7 +829,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
->>>>>>> 86d0e030d9d2b1c13a517e267fd56038c2c997f5
   m_Texture: {fileID: 8400000, guid: 7c23d5d3557e1d0499cd4a0a6a7fa229, type: 2}
   m_UVRect:
     serializedVersion: 2
@@ -849,9 +836,6 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
-<<<<<<< HEAD
---- !u!1 &1157034628
-=======
 --- !u!1 &750777266
 GameObject:
   m_ObjectHideFlags: 0
@@ -1823,7 +1807,6 @@ MonoBehaviour:
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
 --- !u!1 &1584708385
->>>>>>> 86d0e030d9d2b1c13a517e267fd56038c2c997f5
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1853,17 +1836,11 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-<<<<<<< HEAD
-  - {fileID: 733814527}
-  m_Father: {fileID: 1969457755}
-  m_RootOrder: 0
-=======
   - {fileID: 402474986}
   - {fileID: 570007317}
   - {fileID: 750777267}
   m_Father: {fileID: 755588231}
   m_RootOrder: 1
->>>>>>> 86d0e030d9d2b1c13a517e267fd56038c2c997f5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2136,14 +2113,8 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-<<<<<<< HEAD
-  m_Children:
-  - {fileID: 592291461}
-  m_Father: {fileID: 250787641}
-=======
   m_Children: []
   m_Father: {fileID: 30087785}
->>>>>>> 86d0e030d9d2b1c13a517e267fd56038c2c997f5
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2189,9 +2160,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
-<<<<<<< HEAD
---- !u!114 &1573453181
-=======
 --- !u!1 &1819213495
 GameObject:
   m_ObjectHideFlags: 0
@@ -2238,34 +2206,11 @@ CanvasRenderer:
   m_GameObject: {fileID: 1819213495}
   m_CullTransparentMesh: 1
 --- !u!114 &1819213497
->>>>>>> 86d0e030d9d2b1c13a517e267fd56038c2c997f5
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
-  m_GameObject: {fileID: 1573453177}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
-  m_ChildAlignment: 4
-  m_Spacing: 0
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 1
-  m_ChildControlHeight: 1
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
-  m_ReverseArrangement: 0
-=======
   m_GameObject: {fileID: 1819213495}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -2290,7 +2235,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
->>>>>>> 86d0e030d9d2b1c13a517e267fd56038c2c997f5
 --- !u!1 &1841968483
 GameObject:
   m_ObjectHideFlags: 0
@@ -2504,6 +2448,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 372988111}
   - {fileID: 1157034629}
   m_Father: {fileID: 1875284552}
   m_RootOrder: 0
