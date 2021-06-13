@@ -237,6 +237,8 @@ public class QuantumControlScript : MonoBehaviour
             {
                 animator.SetBool("IsJumping", this.isJumping);
                 animator.SetBool("IsRunning", Mathf.Abs(this.DesiredVelocity.x) > Mathf.Epsilon);
+                animator.SetBool("IsDashing", isDashing);
+                animator.SetBool("IsFalling", this.DesiredVelocity.y < -0.1f);
             }
 
             //player.gameObject.transform.localPosition = localSyncPosition;
