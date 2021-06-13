@@ -8,11 +8,12 @@ namespace Assets.__.Scripts.EntangleView
     {
         [SerializeField] private int index;
         [SerializeField] private PlayerEffect playerEffect;
+        [SerializeField] private SpriteRenderer powerOff;
 
         // Use this for initialization
         private void Awake()
         {
-            var lights = GetComponentsInChildren<LightSourceSubscriber>();
+           /* var lights = GetComponentsInChildren<LightSourceSubscriber>();
             foreach(var light in lights)
             {
                 light.Setup(this.index);
@@ -23,9 +24,10 @@ namespace Assets.__.Scripts.EntangleView
             {
                 var spriteRendere = target.GetComponent<SpriteRenderer>();
                 spriteRendere.sortingLayerName = "Zone" + (index + 1);
-            }
+            }*/
 
             GameModel.GetInstance().IndexToPlayerEffect.Add(index, playerEffect);
+            GameModel.GetInstance().IndexToCameraEffect.Add(index, this.powerOff);
 
             //GetComponentInChildren<TextMeshPro>().sortingLayerID = SortingLayer.NameToID("Zone" + (index + 1));
 

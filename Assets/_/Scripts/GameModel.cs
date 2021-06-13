@@ -1,6 +1,7 @@
 ﻿using Assets.__.Scripts.PlayerScripts;
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 
 namespace Assets.__.Scripts
@@ -23,6 +24,7 @@ namespace Assets.__.Scripts
         public readonly Dictionary<int, Light2D> IndexToDark = new Dictionary<int, Light2D>();
         public readonly Dictionary<PlayerEffect, int> ActivePlayerEffects = new Dictionary<PlayerEffect, int>();
         public readonly Dictionary<int, PlayerEffect> IndexToPlayerEffect = new Dictionary<int, PlayerEffect>();
+        public readonly Dictionary<int, SpriteRenderer> IndexToCameraEffect = new Dictionary<int, SpriteRenderer>();
         public int CountInWinZone;
         public bool ReloadScene;
 

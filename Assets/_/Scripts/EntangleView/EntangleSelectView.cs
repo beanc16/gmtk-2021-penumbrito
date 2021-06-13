@@ -82,7 +82,11 @@ namespace Assets.__.Scripts.EntangleView
 
         private void SetLightStates(int panel, bool active)
         {
-            if (gameModel.IndexToLight.ContainsKey(panel))
+            if (gameModel.IndexToCameraEffect.ContainsKey(panel))
+            {
+                gameModel.IndexToCameraEffect[panel].enabled = !active;
+            }
+            /*if (gameModel.IndexToLight.ContainsKey(panel))
             {
                 gameModel.IndexToLight[panel].enabled = active;
             }
@@ -90,7 +94,7 @@ namespace Assets.__.Scripts.EntangleView
             if (gameModel.IndexToDark.ContainsKey(panel))
             {
                 gameModel.IndexToDark[panel].enabled = !active;
-            }
+            }*/
         }
     }
 }
