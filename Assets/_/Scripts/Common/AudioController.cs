@@ -62,6 +62,14 @@ public class AudioController : MonoBehaviour
         }
     }
 
+    /*public void OnDestroy()
+    {
+        PlayerPrefs.DeleteKey(GLOBAL_PREFS_KEY);
+        PlayerPrefs.DeleteKey(MUSIC_PREFS_KEY);
+        PlayerPrefs.DeleteKey(SFX_PREFS_KEY);
+        PlayerPrefs.DeleteAll();
+    }*/
+
     public static void PlaySfx(string sfxName)
     {
         if (instance != null && instance.sfxSources.ContainsKey(sfxName))
