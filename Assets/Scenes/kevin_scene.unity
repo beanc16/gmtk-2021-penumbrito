@@ -816,7 +816,7 @@ PrefabInstance:
     - target: {fileID: 7831777715203344936, guid: 4442b1e44b0273644a5dd0f08ae80d13, type: 3}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 8400000, guid: 79d8115c63bcc5d4990d0b939817f9bf, type: 2}
+      objectReference: {fileID: 8400000, guid: a47682d987e9caf4d9f61fc2b105365f, type: 2}
     - target: {fileID: 7873837481574792382, guid: 4442b1e44b0273644a5dd0f08ae80d13, type: 3}
       propertyPath: m_GravityScale
       value: 1
@@ -2734,7 +2734,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5715724363384033160, guid: 649a722f9ba3ef24c9b642ef4222692e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 649a722f9ba3ef24c9b642ef4222692e, type: 3}
@@ -3179,7 +3179,7 @@ PrefabInstance:
     - target: {fileID: 7831777715203344936, guid: 4442b1e44b0273644a5dd0f08ae80d13, type: 3}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 8400000, guid: 7c23d5d3557e1d0499cd4a0a6a7fa229, type: 2}
+      objectReference: {fileID: 8400000, guid: e867e451793e5fe4986cddc856bd521b, type: 2}
     - target: {fileID: 7873837481574792382, guid: 4442b1e44b0273644a5dd0f08ae80d13, type: 3}
       propertyPath: m_GravityScale
       value: 1
