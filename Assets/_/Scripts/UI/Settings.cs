@@ -187,12 +187,12 @@ public class Settings : MonoBehaviour
 
     public static float GetSavedMusicVolume()
     {
-        return PlayerPrefs.GetFloat(musicVolumeKey);
+        return PlayerPrefs.GetFloat(musicVolumeKey, 1f);
     }
 
     public static float GetSavedSfxVolume()
     {
-        return PlayerPrefs.GetFloat(sfxVolumeKey);
+        return PlayerPrefs.GetFloat(sfxVolumeKey, 1f);
     }
 
     public static bool SavedMusicIsMuted()

@@ -58,7 +58,7 @@ namespace Assets.__.Scripts.EntangleView
             {
                 if (musicState[sound.Key] && currentVolume[sound.Key] < 1f)
                 {
-                    currentVolume[sound.Key] = Mathf.Min(1f, currentVolume[sound.Key] + PER_SEC_CHANGE * deltaTime);
+                    currentVolume[sound.Key] = Mathf.Min(0.1f, currentVolume[sound.Key] + PER_SEC_CHANGE * deltaTime);
                     AudioController.FadeMusic(sound.Key, currentVolume[sound.Key]);
                 }
 
