@@ -221,6 +221,8 @@ public class QuantumControlScript : MonoBehaviour
             }
         }
 
+        contactPushForce = new Vector2(0f, contactPushForce.y);
+
         if (validPlayers == 0 && !this.initialFall)
         {
             return;
@@ -271,7 +273,7 @@ public class QuantumControlScript : MonoBehaviour
                 float desiredX = this.DesiredVelocity.x;
                 float desiredY = this.DesiredVelocity.y;
                 float currentX = player.GetComponent<Rigidbody2D>().velocity.x;
-                desiredX = Mathf.Lerp(currentX, desiredX, MoveAccelMult);
+                desiredX = Mathf.Lerp(currentX, desiredX, Time.deltaTime * MoveAccelMult);
 
                 if (!this.validDirections[(int)EDirections.Right])
                 {
@@ -384,6 +386,7 @@ public class QuantumControlScript : MonoBehaviour
                     this.CurrentGravityForce = 0f;
                     this.CurrentDashForce = this.DashForce;
                     this.isDashing = true;
+                    this.canDash = false;
                 }
             }
             else
