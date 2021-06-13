@@ -36,6 +36,21 @@ namespace Assets.__.Scripts.PlayerScripts
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
+            //Check for a match with the specified name on any GameObject that collides with your GameObject
+            if (collision.gameObject.tag == "Hazard")
+            {
+                GameObject quantumController = GameObject.FindGameObjectsWithTag("QuantumController")[0];
+                QuantumControlScript quantumControlScript = quantumController.GetComponent<QuantumControlScript>();
+                quantumControlScript.OnPlayerHitHazard(collision.gameObject, false);
+            }
+
+            if (collision.gameObject.tag == "DeadlyHazard")
+            {
+                GameObject quantumController = GameObject.FindGameObjectsWithTag("QuantumController")[0];
+                QuantumControlScript quantumControlScript = quantumController.GetComponent<QuantumControlScript>();
+                quantumControlScript.OnPlayerHitHazard(collision.gameObject, true);
+            }
+
             if (collision.gameObject.tag == "WinZone")
             {
                 if (GameModel.GetInstance().WinningPlayers.Contains(this) == false)
