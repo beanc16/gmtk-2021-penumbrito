@@ -69,6 +69,13 @@ namespace Assets.__.Scripts.EntangleView
 
         private void UpdatePanel(int panel)
         {
+            GameObject quantumController = GameObject.FindGameObjectsWithTag("QuantumController")[0];
+            QuantumControlScript quantumControlScript = quantumController.GetComponent<QuantumControlScript>();
+            if (!quantumControlScript.CanUpdatePanel())
+            {
+                return;
+            }
+
             gameModel.ActivePanels[panel] = !gameModel.ActivePanels[panel];
 
             gameModel.UpdatePlayerEffect(panel, gameModel.ActivePanels[panel]);
