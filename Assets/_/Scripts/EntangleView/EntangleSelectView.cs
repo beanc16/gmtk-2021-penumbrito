@@ -11,23 +11,30 @@ namespace Assets.__.Scripts.EntangleView
         [SerializeField] private RectTransform canvasTransform;
         [SerializeField] private float bottomSpacing;
 
+        private GameModel gameModel;
+
         private void Awake()
         {
             instance = this;
 
+            this.gameModel = GameModel.GetInstance();
             this.LoadLevel();
         }
 
         public void LoadLevel()
         {
-            var rect = canvasTransform.rect;
-            var width = rect.width * 0.5f;
+            /*var rect = canvasTransform.rect;
+            var width = rect.width;
             var height = (rect.height - this.bottomSpacing) * 0.5f;
 
             this.CreatePanel(width, height, false, true, 0);
-            this.CreatePanel(width, height, true, true, 1);
-            this.CreatePanel(width, height, false, false, 2);
-            this.CreatePanel(width, height, true, false, 3);
+            this.CreatePanel(width, height, true, true, 1);*/
+
+            gameModel.ActivePanels.Add(false);
+            this.SetLightStates(0, gameModel.ActivePanels[0]);
+
+            gameModel.ActivePanels.Add(false);
+            this.SetLightStates(1, gameModel.ActivePanels[1]);
         }
 
         private void CreatePanel(float width, float height, bool left, bool top, int panelIndex)
@@ -40,9 +47,50 @@ namespace Assets.__.Scripts.EntangleView
                 0);
             rt.sizeDelta = new Vector2(width, height);
 
-            GameModel.GetInstance().ActivePanels.Add(false);
+            gameModel.ActivePanels.Add(false);
 
             newInstance.Setup(panelIndex);
+
+            this.SetLightStates(0, gameModel.ActivePanels[0]);
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                this.UpdatePanel(0);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                this.UpdatePanel(1);
+            }
+        }
+
+        private void UpdatePanel(int panel)
+        {
+            gameModel.ActivePanels[panel] = !gameModel.ActivePanels[panel];
+
+            gameModel.UpdatePlayerEffect(panel, gameModel.ActivePanels[panel]);
+
+            //imagePanel.gameObject.SetActive(gameModel.ActivePanels[this.panelNumber]);
+            this.SetLightStates(panel, gameModel.ActivePanels[panel]);
+            //Inform systems that need it of who is active and who is not.
+
+            gameModel.UpdateActivePanels();
+        }
+
+        private void SetLightStates(int panel, bool active)
+        {
+            if (gameModel.IndexToLight.ContainsKey(panel))
+            {
+                gameModel.IndexToLight[panel].enabled = active;
+            }
+
+            if (gameModel.IndexToDark.ContainsKey(panel))
+            {
+                gameModel.IndexToDark[panel].enabled = !active;
+            }
         }
     }
 }

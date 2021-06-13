@@ -47,8 +47,8 @@ namespace Assets.__.Scripts.EntangleView
         {
             musicState["Modern"] = gameModel.ActivePanels[0];
             musicState["Post"] = gameModel.ActivePanels[1];
-            musicState["Pre"] = gameModel.ActivePanels[2];
-            musicState["Rebuilt"] = gameModel.ActivePanels[3];
+            //musicState["Pre"] = gameModel.ActivePanels[2];
+            //musicState["Rebuilt"] = gameModel.ActivePanels[3];
         }
 
         private void Update()
