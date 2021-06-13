@@ -50,7 +50,7 @@ MonoBehaviour:
   DashTime: 1
   DashForce: 5
   DashDecelerationMultiplier: 3
-  MoveAccelMult: 0.075
+  MoveAccelMult: 20
   MoveVelocity: 2
   CurrentGravityForce: 0
   CurrentDashForce: 0
