@@ -148,6 +148,8 @@ public class QuantumControlScript : MonoBehaviour
             this.isJumping = true;
 
             isLethalDamage = false;
+
+            this.canDash = true;
         }
 
         if (isLethalDamage)
