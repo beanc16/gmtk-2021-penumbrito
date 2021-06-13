@@ -85,6 +85,8 @@ namespace Assets.__.Scripts.EntangleView
             //Inform systems that need it of who is active and who is not.
 
             gameModel.UpdateActivePanels();
+
+            quantumControlScript.UpdatePlayerWorldAnchors();
         }
 
         private void SetLightStates(int panel, bool active)

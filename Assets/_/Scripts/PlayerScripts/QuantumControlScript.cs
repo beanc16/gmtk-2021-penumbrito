@@ -43,6 +43,8 @@ public class QuantumControlScript : MonoBehaviour
     private Vector2 dashDirection;
     private bool isFacingLeft;
 
+    private Vector3[] cachedPlayerWorldAnchors;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,10 +54,13 @@ public class QuantumControlScript : MonoBehaviour
         var gameObjects = GameObject.FindGameObjectsWithTag("Player");
         cachedControllablePlayers = new ControllablePlayer[gameObjects.Length];
         this.startingSize = new Vector3[gameObjects.Length];
+        this.cachedPlayerWorldAnchors = new Vector3[gameObjects.Length];
         for (int i = 0; i < gameObjects.Length; i++)
         {
             cachedControllablePlayers[i] = gameObjects[i].GetComponent<ControllablePlayer>();
             this.startingSize[i] = gameObjects[i].transform.localScale;
+
+            this.cachedPlayerWorldAnchors[i] = new Vector2(0f, 0f);
         }
 
         this.gameModel = GameModel.GetInstance();
@@ -67,6 +72,16 @@ public class QuantumControlScript : MonoBehaviour
         this.canDash = true;
         this.initialFall = true;
         this.isFacingLeft = false;
+
+        UpdatePlayerWorldAnchors();
+    }
+
+    public void UpdatePlayerWorldAnchors()
+    {
+        for (int i = 0; i < this.cachedControllablePlayers.Length; i++)
+        {
+            this.cachedPlayerWorldAnchors[i] = this.cachedControllablePlayers[i].gameObject.transform.localPosition;
+        }
     }
 
     public void UpdatePlayerEffects()
@@ -172,6 +187,8 @@ public class QuantumControlScript : MonoBehaviour
             this.validDirections[i] = true;
         }
 
+        Vector2 contactPushForce = new Vector2(0f, 0f);
+
         //Hacky
         int validPlayers = 0;
         foreach (var player in cachedControllablePlayers)
@@ -198,6 +215,8 @@ public class QuantumControlScript : MonoBehaviour
                     // For each contact, populate the valid directions we can move in
                     Vector2 revContactNormal = -contact.normal;
                     PopulateValidDirections(revContactNormal);
+
+                    contactPushForce += revContactNormal * contact.separation * 3f;
                 }
             }
         }
@@ -217,9 +236,11 @@ public class QuantumControlScript : MonoBehaviour
 
         this.DesiredVelocity = GetDesiredVelocityFromValidDirections();
 
-        //Vector2 localSyncPosition = cachedControllablePlayers[0].transform.localPosition;
-        foreach (var player in cachedControllablePlayers)
+        Vector2 localSyncPosition = new Vector2(0f, 0f);
+        bool hasProcessedVelocity = false;
+        for (int i = 0; i < cachedControllablePlayers.Length; ++i)
         {
+            var player = cachedControllablePlayers[i];
             if (gameModel.ActivePanels[player.PlayerIndex] == false && !this.initialFall)
             {
                 continue;
@@ -244,23 +265,34 @@ public class QuantumControlScript : MonoBehaviour
                 animator.SetBool("IsFalling", this.DesiredVelocity.y < -0.1f);
             }
 
-            //player.gameObject.transform.localPosition = localSyncPosition;
-            float desiredX = this.DesiredVelocity.x;
-            float desiredY = this.DesiredVelocity.y;
-            float currentX = player.GetComponent<Rigidbody2D>().velocity.x;
-            desiredX = Mathf.Lerp(currentX, desiredX, MoveAccelMult);
-
-            if (!this.validDirections[(int)EDirections.Right])
+            if (!hasProcessedVelocity)
             {
-                desiredX = Mathf.Min(desiredX, 0f);
-            }
-            if (!this.validDirections[(int)EDirections.Left])
-            {
-                desiredX = Mathf.Max(desiredX, 0f);
-            }
+                //player.gameObject.transform.localPosition = localSyncPosition;
+                float desiredX = this.DesiredVelocity.x;
+                float desiredY = this.DesiredVelocity.y;
+                float currentX = player.GetComponent<Rigidbody2D>().velocity.x;
+                desiredX = Mathf.Lerp(currentX, desiredX, MoveAccelMult);
 
-            Vector2 adjustedDesiredVelocity = new Vector2(desiredX, desiredY);
-            player.GetComponent<Rigidbody2D>().velocity = adjustedDesiredVelocity;
+                if (!this.validDirections[(int)EDirections.Right])
+                {
+                    desiredX = Mathf.Min(desiredX, 0f);
+                }
+                if (!this.validDirections[(int)EDirections.Left])
+                {
+                    desiredX = Mathf.Max(desiredX, 0f);
+                }
+
+                Vector2 adjustedDesiredVelocity = new Vector2(desiredX, desiredY);
+                player.GetComponent<Rigidbody2D>().velocity = adjustedDesiredVelocity + contactPushForce;
+
+                hasProcessedVelocity = true;
+
+                localSyncPosition = player.gameObject.transform.localPosition - cachedPlayerWorldAnchors[i];
+            }
+            else
+            {
+                player.transform.localPosition = cachedPlayerWorldAnchors[i] + (Vector3)localSyncPosition;
+            }
         }
     }
 
@@ -278,6 +310,13 @@ public class QuantumControlScript : MonoBehaviour
             }
 
             player.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+
+            gameModel.ActivePanels[player.PlayerIndex] = false;
+
+            if (gameModel.IndexToCameraEffect.ContainsKey(player.PlayerIndex))
+            {
+                gameModel.IndexToCameraEffect[player.PlayerIndex].enabled = true;
+            }
         }
     }
 
@@ -297,6 +336,7 @@ public class QuantumControlScript : MonoBehaviour
             }
             if (this.CurrentGravityForce < 0f)
             {
+                this.CurrentGravityForce = 0f;
                 this.initialFall = false;
                 this.isJumping = false;
             }
