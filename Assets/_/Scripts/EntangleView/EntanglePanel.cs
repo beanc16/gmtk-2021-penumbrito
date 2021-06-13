@@ -15,6 +15,7 @@ namespace Assets.__.Scripts.EntangleView
         {
             this.selectButton = this.GetComponent<Button>();
             this.imagePanel = this.GetComponentInChildren<Image>();
+<<<<<<< HEAD
 
             this.selectButton.onClick.AddListener(this.OnClickedPanel);
         }
@@ -43,29 +44,14 @@ namespace Assets.__.Scripts.EntangleView
             //Inform systems that need it of who is active and who is not.
 
             gameModel.UpdateActivePanels();
+=======
+>>>>>>> 86d0e030d9d2b1c13a517e267fd56038c2c997f5
         }
 
         public void Setup(int panelNumber)
         {
-            var gameModel = GameModel.GetInstance();
             this.panelNumber = panelNumber;
             imagePanel.gameObject.SetActive(false);
-            this.SetLightStates(gameModel.ActivePanels[this.panelNumber]);
-            //Set panel colour based on character ability?
-        }
-
-        private void SetLightStates(bool active)
-        {
-            var gameModel = GameModel.GetInstance();
-            if (gameModel.IndexToLight.ContainsKey(this.panelNumber))
-            {
-                gameModel.IndexToLight[this.panelNumber].enabled = active;
-            }
-
-            if (gameModel.IndexToDark.ContainsKey(this.panelNumber))
-            {
-                gameModel.IndexToDark[this.panelNumber].enabled = !active;
-            }
         }
     }
 }

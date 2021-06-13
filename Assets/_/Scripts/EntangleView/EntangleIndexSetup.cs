@@ -31,6 +31,17 @@ namespace Assets.__.Scripts.EntangleView
 
             var player = GetComponentInChildren<ControllablePlayer>();
             player.SetPlayerIndex(index);
+
+            /*var gameModel = GameModel.GetInstance();
+            if (gameModel.IndexToLight.ContainsKey(index))
+            {
+                gameModel.IndexToLight[index].enabled = gameModel.ActivePanels[index];
+            }
+
+            if (gameModel.IndexToDark.ContainsKey(index))
+            {
+                gameModel.IndexToDark[index].enabled = !gameModel.ActivePanels[index];
+            }*/
         }
     }
 }
