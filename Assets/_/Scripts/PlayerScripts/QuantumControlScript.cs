@@ -227,6 +227,15 @@ public class QuantumControlScript : MonoBehaviour
 
         if (validPlayers == 0 && !this.initialFall)
         {
+            for (int i = 0; i < cachedControllablePlayers.Length; ++i)
+            {
+                var player = cachedControllablePlayers[i];
+                if (gameModel.ActivePanels[player.PlayerIndex] == false && !this.initialFall)
+                {
+                    player.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
+                    continue;
+                }
+            }
             return;
         }
 
@@ -247,6 +256,7 @@ public class QuantumControlScript : MonoBehaviour
             var player = cachedControllablePlayers[i];
             if (gameModel.ActivePanels[player.PlayerIndex] == false && !this.initialFall)
             {
+                player.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
                 continue;
             }
 
