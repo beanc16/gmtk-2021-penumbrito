@@ -151,6 +151,7 @@ public class QuantumControlScript : MonoBehaviour
         if (gameModel.ReloadScene)
         {
             SceneHandler.RestartCurrentScene();
+            return;
         }
 
         if (gameModel.CountInWinZone == this.cachedControllablePlayers.Length)

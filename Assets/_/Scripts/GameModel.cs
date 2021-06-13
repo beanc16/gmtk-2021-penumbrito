@@ -76,6 +76,7 @@ namespace Assets.__.Scripts
             this.IndexToLight.Clear();
             this.IndexToPlayerEffect.Clear();
             this.ActivePlayerEffects.Clear();
+            this.IndexToCameraEffect.Clear();
             this.registeredQuantumControlScript = null;
             this.CountInWinZone = 0;
             this.ReloadScene = false;
