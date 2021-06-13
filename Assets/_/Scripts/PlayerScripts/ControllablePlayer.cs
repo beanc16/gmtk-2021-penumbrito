@@ -39,15 +39,16 @@ namespace Assets.__.Scripts.PlayerScripts
             if (collision.gameObject.tag == "WinZone")
             {
                 GameModel.GetInstance().CountInWinZone++;
+                SpriteRenderer spriteRenderer = collision.gameObject.GetComponent<SpriteRenderer>();
+                if (spriteRenderer)
+                {
+                    spriteRenderer.enabled = true;
+                }
             }
         }
 
         private void OnTriggerExit2D(Collider2D collision)
         {
-            if (collision.gameObject.tag == "WinZone")
-            {
-                GameModel.GetInstance().CountInWinZone--;
-            }
         }
     }
 }
