@@ -7,6 +7,13 @@
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
 
+<!-- CSS -->
+<style type="text/css">
+  .play-button {
+    font-size: 32px;
+  }
+</style>
+
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
@@ -24,7 +31,7 @@
     <br />
   </p>
 </p>
-<div style="text-align: center;">
+<div align="center">
   <a href="https://github.com/beanc16/gmtk-2021-penumbrito">
     <img src="./Assets/_/Sprites/Promotional/Gameplay.gif" alt="Gameplay" width="75%">
   </a>
@@ -54,7 +61,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-<div style="text-align: center;">
+<div align="center">
   <a href="https://github.com/beanc16/gmtk-2021-penumbrito">
     <img src="./Assets/_/Sprites/Promotional/Cover_Image.png" alt="Cover Image" width="75%">
   </a>
@@ -128,8 +135,8 @@ Project Link: [https://github.com/beanc16/gmtk-2021-penumbrito](https://github.c
 <!-- Play the Game -->
 ## Play the Game
 <br />
-<div style="text-align: center;">
-  <a href="https://itch.io/jam/gmtk-2021/rate/1078608" style="font-size: 36px;">
+<div align="center">
+  <a href="https://itch.io/jam/gmtk-2021/rate/1078608" class="play-button">
     <strong>
       Play »
     </strong>
