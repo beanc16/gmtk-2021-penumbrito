@@ -112,7 +112,7 @@
 
 
 
-Project Link: [https://github.com/beanc16/gmtk-2021-penumbrito](https://github.com/github_username/repo_name)
+Project Link: [https://github.com/beanc16/gmtk-2021-penumbrito](https://github.com/beanc16/gmtk-2021-penumbrito)
 
 
 
