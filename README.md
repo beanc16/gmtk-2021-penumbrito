@@ -50,6 +50,8 @@
   </ol>
 </details>
 
+<br />
+
 
 
 <!-- ABOUT THE PROJECT -->
@@ -72,6 +74,8 @@
 
 * [Unity](https://unity.com)
 * [C#](https://docs.microsoft.com/en-us/dotnet/csharp)
+
+<br />
 
 
 
@@ -114,6 +118,8 @@
 
 Project Link: [https://github.com/beanc16/gmtk-2021-penumbrito](https://github.com/beanc16/gmtk-2021-penumbrito)
 
+<br />
+
 
 
 <!-- ACKNOWLEDGEMENTS -->
@@ -123,32 +129,12 @@ Project Link: [https://github.com/beanc16/gmtk-2021-penumbrito](https://github.c
 * [Img Shields](https://shields.io)
 * [Universal Render Pipeline](https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@12.0/manual/index.html)
 
+<br />
+
 
 
 <!-- Play the Game -->
-## Play the Game
-<br />
-<div align="center">
-  <a href="https://itch.io/jam/gmtk-2021/rate/1078608" class="play-button">
-    <strong>
-      Play »
-    </strong>
-  </a>
-</div>
-
-
-
-
-
-<!-- CSS -->
-<style type="text/css">
-  .play-button {
-    font-size: 32px;
-  }
-</style>
-
-
-
+## [Play the Game](https://itch.io/jam/gmtk-2021/rate/1078608)
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
