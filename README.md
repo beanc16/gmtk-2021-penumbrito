@@ -7,13 +7,6 @@
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
 
-<!-- CSS -->
-<style type="text/css">
-  .play-button {
-    font-size: 32px;
-  }
-</style>
-
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
@@ -142,6 +135,17 @@ Project Link: [https://github.com/beanc16/gmtk-2021-penumbrito](https://github.c
     </strong>
   </a>
 </div>
+
+
+
+
+
+<!-- CSS -->
+<style type="text/css">
+  .play-button {
+    font-size: 32px;
+  }
+</style>
 
 
 
